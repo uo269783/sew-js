@@ -1,7 +1,7 @@
 body {
     font-family: Tahoma, sans-serif;
     color: #000000;
-    background-color: #ffffff;
+    background-color: beige;
 }
 
 form {
@@ -11,7 +11,9 @@ form {
 }
 
 header {
-
+    background-color: #be84a3;
+    border: solid 0.125em purple;
+    margin: 0 0 2%;
 }
 
 h2 {
