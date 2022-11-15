@@ -189,4 +189,10 @@ class Calculadora {
 
 }
 
-var calculadora = new Calculadora();
+class CalculadoraCientifica extends Calculadora {
+
+    
+
+}
+
+var calculadora = new CalculadoraCientifica();

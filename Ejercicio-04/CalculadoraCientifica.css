@@ -1,0 +1,51 @@
+body {
+    font-family: Tahoma, sans-serif;
+    color: #000000;
+    background-color: beige;
+}
+
+form {
+    background-color: #be84a3;
+    border: 0.125em solid purple;
+    width: fit-content;
+}
+
+header {
+    background-color: #be84a3;
+    border: solid 0.125em purple;
+    margin: 0 0 2%;
+}
+
+h2 {
+    padding: 0%;
+    margin: 0%;
+    font-size: 1.25em;
+}
+
+h1 {
+    font-size: 2.25em;
+}
+
+header p  {
+    font-size: 1.5em;
+}
+
+input {
+    font-size: 1.25em;
+}
+
+input[type=button] {
+    grid-area: bt;
+}
+
+input[type=text] {
+    text-align: right;
+}
+
+form p:first-child, form p:last-child {
+    grid-template-areas: 'bt bt bt bt';
+}
+
+form p {
+    grid-template-areas: 'bt bt bt bt bt';
+}
