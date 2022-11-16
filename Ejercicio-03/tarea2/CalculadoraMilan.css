@@ -10,6 +10,27 @@ form {
     width: fit-content;
 }
 
+form p {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 0;
+}
+
+section p {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+section+p,
+form p:nth-child(6) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+section+p {
+    margin-top: 5%;
+}
+
 header {
     background-color: #be84a3;
     border: solid 0.125em purple;
@@ -26,7 +47,7 @@ h1 {
     font-size: 2.25em;
 }
 
-header p  {
+header p {
     font-size: 1.5em;
 }
 
@@ -35,17 +56,9 @@ input {
 }
 
 input[type=button] {
-    grid-area: bt;
+    height: 2em;
 }
 
 input[type=text] {
     text-align: right;
-}
-
-form p:first-child, form p:last-child {
-    grid-template-areas: 'bt bt bt bt';
-}
-
-form p {
-    grid-template-areas: 'bt bt bt bt bt';
 }

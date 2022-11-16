@@ -59,15 +59,26 @@ class Calculadora {
                 case '.':
                     this.punto();
                     break;
-                case 's': //sqrt
+                case 'r':
                     this.raiz();
                     break;
                 case 'm':
                     this.mrc();
                     break;
-
+                case 'n':
+                    this.mmenos();
+                    break;
+                case 'b':
+                    this.mmas();
+                    break;
+                case 's':
+                    this.masMenos();
+                    break;
+                case 'p':
+                    this.porcentaje();
+                    break;
             }
-        })
+        });
     }
 
     digitos(value) {
@@ -151,13 +162,13 @@ class Calculadora {
 
     porcentaje() {
         var texto = document.getElementsByTagName("input")[0];
-        
-        if(this.anterior == null) { //si no hay anterior, simplemente se pone a 0
-            texto.value="0";
+
+        if (this.anterior == null) { //si no hay anterior, simplemente se pone a 0
+            texto.value = "0";
         }
         else {
             var percent = Number(texto.value);
-            texto.value = eval(Number(this.anterior)*percent/100);
+            texto.value = eval(Number(this.anterior) * percent / 100);
             this.editable = true;
         }
     }
@@ -173,6 +184,7 @@ class Calculadora {
     mrc() {
         var texto = document.getElementsByTagName("input")[0];
         texto.value = this.memoria.toString();
+        this.editable = true;
     }
 
     mmas() {

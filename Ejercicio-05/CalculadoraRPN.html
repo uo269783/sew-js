@@ -17,10 +17,13 @@
     </header>
 
     <form>
-        <h2>RPN</h2>
-        <p>
-            <textarea readonly></textarea>
-        </p>
+        <section>
+            <h2>RPN</h2>
+            <p>
+                <textarea readonly >0</textarea>
+            </p>
+        </section>
+
         <p>
             <input type="button" value="CE" onclick="calculadora.borrar()" />
             <input type="button" value="+/-" onclick="calculadora.masMenos()" />
@@ -29,7 +32,7 @@
         </p>
 
         <p>
-            <input type="button" value="7" onkeydown="" onclick="calculadora.digitos(7)" />
+            <input type="button" value="7" onclick="calculadora.digitos(7)" />
             <input type="button" value="8" onclick="calculadora.digitos(8)" />
             <input type="button" value="9" onclick="calculadora.digitos(9)" />
             <input type="button" value="x" onclick="calculadora.multiplicar()" />
@@ -55,9 +58,9 @@
         </p>
 
         <p>
-            <input type="button" value="0" onclick="calculadora.digitos(0)" />
             <input type="button" value="." onclick="calculadora.punto()" />
-            <input type="button" value="enter" onclick="calculadora.igual()" />
+            <input type="button" value="0" onclick="calculadora.digitos(0)" />
+            <input type="button" value="enter" onclick="calculadora.enter()" />
             <input type="button" value="tan" onclick="calculadora.tan()" />
             <input type="button" value="tan-1" onclick="calculadora.arctan()" />
         </p>

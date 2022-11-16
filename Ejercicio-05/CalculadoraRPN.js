@@ -5,7 +5,7 @@ class CalculadoraRPN {
     constructor() {
         this.pila = [];
         this.valor = "0";
-
+        this.editable = false;
         //teclado
     }
 
@@ -21,16 +21,18 @@ class CalculadoraRPN {
     }
 
     digitos(valor) {
-        if (this.valor == "0")
-            this.valor = valor;
+        if (this.valor == "0" || this.editable) {
+            this.valor = "" + valor;
+            this.editable = false;
+        }
         else
-            this.valor += valor;
+            this.valor += "" + valor;
         this.mostrarPila();
     }
 
-    igual() {
+    enter() {
         this.pila.push(Number(this.valor));
-        this.valor = "";
+        this.valor = "0";
         this.mostrarPila();
     }
 
@@ -38,7 +40,7 @@ class CalculadoraRPN {
 
         var val = this.pila.pop();
 
-        if (val == NaN)
+        if (val == NaN || val == null)
             val = 0;
 
         switch (operador) {
@@ -56,6 +58,8 @@ class CalculadoraRPN {
                 break;
         }
 
+        this.editable = true;
+
         this.mostrarPila();
     }
 
@@ -63,6 +67,8 @@ class CalculadoraRPN {
         if (!this.valor.includes(".")) {
             this.valor += ".";
         }
+
+        this.mostrarPila();
     }
 
     sumar() {
@@ -105,32 +111,38 @@ class CalculadoraRPN {
         this.trigonometrica("arctan");
     }
 
+    borrar() {
+        this.valor = "0";
+        this.mostrarPila();
+    }
+
     trigonometrica(operador) {
-        var val = this.pila.pop();
+        var val = this.valor;
 
         switch (operador) {
             case "sin":
-                this.pila.push(Math.sin(val));
+                this.valor = (Math.sin(val));
                 break;
             case "cos":
-                this.pila.push(Math.cos(val));
+                this.valor = (Math.cos(val));
                 break;
             case "tan":
-                this.pila.push(Math.tan(val));
+                this.valor = (Math.tan(val));
                 break;
             case "arcsin":
-                this.pila.push(Math.arcsin(val));
+                this.valor = (Math.asin(val));
                 break;
             case "arccos":
-                this.pila.push(Math.arccos(val));
+                this.valor = (Math.acos(val));
                 break;
             case "arctan":
-                this.pila.push(Math.arctan(val));
+                this.valor = (Math.atan(val));
                 break;
             default:
-                this.pila.push(val);
+                this.valor = (val);
                 break;
         }
+        this.editable = true;
 
         this.mostrarPila();
     }
