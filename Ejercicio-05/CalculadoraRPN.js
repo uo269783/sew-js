@@ -4,43 +4,65 @@ class CalculadoraRPN {
 
     constructor() {
         this.pila = [];
+        this.valor = "0";
 
         //teclado
     }
 
     mostrarPila() {
-        var texto = document.getElementsByTagName("input")[0];
+        var texto = document.getElementsByTagName("textarea")[0];
+        texto.value = "";
 
-        for (var v in pila) {
-            texto.value.concat(v + "\n");
-        }
+        this.pila.forEach(v => {
+            texto.value += v + "\n";
+        });
+
+        texto.value += (this.valor + "\n");
     }
 
     digitos(valor) {
+        if (this.valor == "0")
+            this.valor = valor;
+        else
+            this.valor += valor;
+        this.mostrarPila();
+    }
 
-
+    igual() {
+        this.pila.push(Number(this.valor));
+        this.valor = "";
+        this.mostrarPila();
     }
 
     operar(operador) {
-        var val1 = pila.pop();
-        var val2 = pila.pop();
+
+        var val = this.pila.pop();
+
+        if (val == NaN)
+            val = 0;
 
         switch (operador) {
             case '+':
-                this.pila.push(val1 + val2);
+                this.valor = (val + Number(this.valor));
                 break;
             case '-':
-                this.pila.push(val1 - val2);
+                this.valor = (val - Number(this.valor));
                 break;
             case '*':
-                this.pila.push(val1 * val2);
+                this.valor = (val * Number(this.valor));
                 break;
             case '/':
-                this.pila.push(val1 / val2);
+                this.valor = (val / Number(this.valor));
                 break;
         }
 
         this.mostrarPila();
+    }
+
+    punto() {
+        if (!this.valor.includes(".")) {
+            this.valor += ".";
+        }
     }
 
     sumar() {
@@ -84,7 +106,7 @@ class CalculadoraRPN {
     }
 
     trigonometrica(operador) {
-        var val = pila.pop();
+        var val = this.pila.pop();
 
         switch (operador) {
             case "sin":

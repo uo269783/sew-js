@@ -151,13 +151,13 @@ class Calculadora {
 
     porcentaje() {
         var texto = document.getElementsByTagName("input")[0];
-        
-        if(this.anterior == null) { //si no hay anterior, simplemente se pone a 0
-            texto.value="0";
+
+        if (this.anterior == null) { //si no hay anterior, simplemente se pone a 0
+            texto.value = "0";
         }
         else {
             var percent = Number(texto.value);
-            texto.value = eval(Number(this.anterior)*percent/100);
+            texto.value = eval(Number(this.anterior) * percent / 100);
             this.editable = true;
         }
     }
@@ -191,8 +191,21 @@ class Calculadora {
 
 class CalculadoraCientifica extends Calculadora {
 
-    
 
+    digitos(valor) {
+        var texto = document.getElementsByTagName("input")[0];
+        texto.value += valor;
+    }
+
+    sumar() {
+        var texto = document.getElementsByTagName("input")[0];
+        texto.value += "+";
+    }
+
+    restar() {
+        var texto = document.getElementsByTagName("input")[0];
+        texto.value += "-";
+    }
 }
 
 var calculadora = new CalculadoraCientifica();

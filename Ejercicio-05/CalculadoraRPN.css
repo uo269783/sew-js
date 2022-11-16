@@ -38,8 +38,8 @@ input[type=button] {
     grid-area: bt;
 }
 
-input[type=text] {
-    text-align: right;
+textarea {
+    text-align: end;
 }
 
 form p:first-child, form p:last-child {
