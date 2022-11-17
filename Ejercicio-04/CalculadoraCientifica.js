@@ -4,6 +4,7 @@ class Calculadora {
         this.anterior = null;
         this.operador = null;
         this.editable = false;
+        this.valor = "0";
         this.memoria = Number(0);
 
         document.addEventListener('keydown', (event) => {
@@ -84,54 +85,64 @@ class Calculadora {
         });
     }
 
-    digitos(value) {
+    mostrarTexto() {
         var texto = document.getElementsByTagName("input")[0];
+        texto.value = this.valor;
+    }
 
-        if (texto.value == "0" || this.editable) {
-            texto.value = value;
+    digitos(value) {
+
+        if (this.valor == "0" || this.editable) {
+            this.valor = "" + value;
             this.editable = false;
         }
         else
-            texto.value += value;
+            this.valor += value;
+
+        this.mostrarTexto();
     }
 
     punto() {
-        var texto = document.getElementsByTagName("input")[0];
 
-        if (!texto.value.includes("."))
-            texto.value += ".";
+        if (!this.valor.includes("."))
+            this.valor += ".";
 
         this.editable = false;
+        this.mostrarTexto();
     }
 
     borrarTodo() {
-        document.getElementsByTagName("input")[0].value = "0";
+        this.valor = "0";
         this.anterior = null;
         this.editable = true;
         this.operador = null;
+        this.mostrarTexto();
     }
 
     borrar() {
-        document.getElementsByTagName("input")[0].value = "0";
+        this.valor = "0";
         this.editable = true;
+        this.mostrarTexto();
     }
 
     basica(operador) {
-        var texto = document.getElementsByTagName("input")[0];
+
         //no hay numero anterior
         if (this.anterior == null || this.editable) {
-            this.anterior = texto.value;
-            texto.value = "0";
+            this.anterior = this.valor;
+            this.valor = "0";
             this.operador = operador;
         }
 
         //hay numero anterior
         else {
-            texto.value = eval(Number(this.anterior) + this.operador + Number(texto.value));
-            this.anterior = texto.value;
+            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
+            this.anterior = this.valor;
             this.editable = true;
             this.operador = operador;
         }
+
+        this.mostrarTexto();
     }
 
     sumar() {
@@ -151,76 +162,176 @@ class Calculadora {
     }
 
     raiz() {
-        var texto = document.getElementsByTagName("input")[0];
-        if (Number(texto.value) > 0) {
-            texto.value = Math.sqrt(Number(texto.value));
+
+        if (Number(this.valor) > 0) {
+            this.valor = Math.sqrt(Number(this.valor));
         }
+
+        this.mostrarTexto();
     }
 
     igual() {
-        var texto = document.getElementsByTagName("input")[0];
 
         if (this.anterior == null) {
-            texto.value = texto.value;
+            this.valor = this.valor;
         }
         else {
-            texto.value = eval(Number(this.anterior) + this.operador + Number(texto.value));
+            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
             this.editable = true;
             this.anterior = null;
             this.operador = null;
         }
+
+        this.mostrarTexto();
     }
 
     porcentaje() {
-        var texto = document.getElementsByTagName("input")[0];
+
 
         if (this.anterior == null) { //si no hay anterior, simplemente se pone a 0
-            texto.value = "0";
+            this.valor = "0";
         }
         else {
-            var percent = Number(texto.value);
-            texto.value = eval(Number(this.anterior) * percent / 100);
+            var percent = Number(this.valor);
+            this.valor = eval(Number(this.anterior) * percent / 100);
             this.editable = true;
         }
+
+        this.mostrarTexto();
     }
 
     masMenos() {
-        var texto = document.getElementsByTagName("input")[0];
-        if (Number(texto.value) > 0)
-            texto.value = Number("-" + texto.value);
+        if (Number(this.valor) > 0)
+            this.valor = Number("-" + this.valor);
         else
-            texto.value = eval("0-" + Number(texto.value));
+            this.valor = eval("0-" + Number(this.valor));
+
+        this.mostrarTexto();
     }
 
     mrc() {
-        var texto = document.getElementsByTagName("input")[0];
-        texto.value = this.memoria.toString();
+        this.valor = this.memoria.toString();
         this.editable = true;
+        this.mostrarTexto();
     }
 
     mmas() {
-        var texto = document.getElementsByTagName("input")[0]
-        this.memoria += Number(texto.value)
+        this.memoria += Number(this.valor);
         this.editable = true;
     }
 
     mmenos() {
-        var texto = document.getElementsByTagName("input")[0]
-        this.memoria -= Number(texto.value)
+        this.memoria -= Number(this.valor);
         this.editable = true;
     }
 
 }
 
 class CalculadoraCientifica extends Calculadora {
-    
+
     constructor() {
+        super();
         this.formula = "";
     }
 
-    pi() {
-        var texto = document.
+    mostrarTexto() {
+        var txFormula = document.getElementsByTagName("input")[0];
+        var txValor = document.getElementsByTagName("input")[1];
+
+        txFormula.value = this.formula;
+        txValor.value = this.valor;
     }
+
+    basica(operador) {
+
+        if (!this.editable) {
+            this.formula += this.valor + operador;
+            this.valor = "0";
+        }
+
+        else {
+            this.formula += operador;
+            this.valor = "0";
+            this.editable = false;
+        }
+
+        this.mostrarTexto();
+    }
+
+    digitos(value) {
+        if (this.valor == "0" || this.editable) {
+            this.valor = "" + value;
+
+            if (this.editable) {
+                this.formula = "";
+            }
+
+            this.editable = false;
+        }
+        else
+            this.valor += value;
+
+        this.mostrarTexto();
+    }
+
+    igual() {
+        if (this.editable) {
+            this.formula = this.valor;
+        }
+        else {
+            this.formula += this.valor;
+            this.valor = eval(this.formula);
+            this.editable = true;
+        }
+        this.mostrarTexto();
+    }
+
+    borrarTodo() {
+        this.formula = "";
+        this.valor = "0";
+    }
+
+    abreParentesis() {
+        this.formula += "(";
+        this.mostrarTexto();
+    }
+
+    cierraParentesis() {
+        this.formula += ")";
+        this.mostrarTexto();
+    }
+
+    sin() {
+        this.formula += Math.sin(this.valor);
+        this.valor = "0";
+    }
+
+    cos() {
+        this.formula += Math.cos(this.valor);
+        this.valor = "0";
+    }
+
+    tan() {
+        this.formula += Math.tan(this.valor);
+        this.valor = "0";
+    }
+
+    arcsin() {
+        
+    }
+
+    shift() {
+
+        if (!shiftPulsado) {
+            var btsin = document.getElementsByTagName("input")[4];
+            var btcos = document.getElementsByTagName("input")[5];
+            var bttan = document.getElementsByTagName("input")[6];
+
+            btsin.value = "sin-1";
+            btsin.onclick(this.arcsin);
+        }
+    }
+
 }
 
-var calculadora = new Calculadora();
+var calculadora = new CalculadoraCientifica();

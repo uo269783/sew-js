@@ -20,7 +20,7 @@
         <section>
             <h2>Windows</h2>
             <p>
-                <input type="text" readonlyW />
+                <input type="text" readonly />
             </p>
             <p>
                 <input type="text" readonly value="0" />
@@ -46,7 +46,6 @@
             <input type="button" value="shift" onclick="calculadora.shift()" />
             <input type="button" value="CE" onclick="calculadora.borrarTodo()" />
             <input type="button" value="C" onclick="calculadora.borrar()" />
-            <input type="button" value="borrar" onclick="calculadora.retroceder()" />
             <input type="button" value="%" onclick="calculadora.porcentaje()" />
         </p>
 
@@ -67,7 +66,7 @@
         </p>
 
         <p>
-            <input type="button" value="+/-" onclick="calculadora.digitos(7)" />
+            <input type="button" value="+/-" onclick="calculadora.masMenos()" />
             <input type="button" value="1" onclick="calculadora.digitos(1)" />
             <input type="button" value="2" onclick="calculadora.digitos(2)" />
             <input type="button" value="3" onclick="calculadora.digitos(3)" />

@@ -13,7 +13,7 @@ form {
 form p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    margin: 0;
+    margin: 0 2% 0;
 }
 
 section {
