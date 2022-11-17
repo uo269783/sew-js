@@ -6,18 +6,103 @@ class CalculadoraRPN {
         this.pila = [];
         this.valor = "0";
         this.editable = false;
-        //teclado
+
+        document.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case '1':
+                    this.digitos(1);
+                    break;
+                case '2':
+                    this.digitos(2);
+                    break;
+                case '3':
+                    this.digitos(3);
+                    break;
+                case '4':
+                    this.digitos(4);
+                    break;
+                case '5':
+                    this.digitos(5);
+                    break;
+                case '6':
+                    this.digitos(6);
+                    break;
+                case '7':
+                    this.digitos(7);
+                    break;
+                case '8':
+                    this.digitos(8);
+                    break;
+                case '9':
+                    this.digitos(9);
+                    break;
+                case '0':
+                    this.digitos(0);
+                    break;
+                case '+':
+                    this.sumar();
+                    break;
+                case '-':
+                    this.restar();
+                    break;
+                case '*':
+                    this.multiplicar();
+                    break;
+                case '/':
+                    this.dividir();
+                    break;
+                case 'Enter':
+                    this.enter();
+                    break;
+                case 'c':
+                    this.borrarPila();
+                    break;
+                case '.':
+                    this.punto();
+                    break;
+                case 'r':
+                    this.raiz();
+                    break;
+                case 'a':
+                    this.cos();
+                    break;
+                case 's':
+                    this.sin();
+                    break;
+                case 'd':
+                    this.tan();
+                    break;
+                case 'f':
+                    this.arccos();
+                    break;
+                case 'g':
+                    this.arcsin();
+                    break;
+                case 'h':
+                    this.arctan();
+                    break;
+                case 'Backspace':
+                    this.borrar();
+                    break;
+                case 'm':
+                    this.masMenos();
+                    break;
+
+            }
+        });
     }
 
     mostrarPila() {
-        var texto = document.getElementsByTagName("textarea")[0];
-        texto.value = "";
+        var textarea = document.getElementsByTagName("textarea")[0];
+        var texto = document.getElementsByTagName("input")[0];
+
+        textarea.value = "";
 
         this.pila.forEach(v => {
-            texto.value += v + "\n";
+            textarea.value += v + "\n";
         });
 
-        texto.value += (this.valor + "\n");
+        texto.value = this.valor;
     }
 
     digitos(valor) {
@@ -36,29 +121,31 @@ class CalculadoraRPN {
         this.mostrarPila();
     }
 
-    operar(operador) {
+    basica(operador) {
 
-        var val = this.pila.pop();
+        var val2 = this.pila.pop();
+        var val1 = this.pila.pop();
 
-        if (val == NaN || val == null)
-            val = 0;
+        if (val1 == NaN || val1 == null)
+            val1 = 0;
+        if (val2 == NaN || val2 == null)
+            val2 = 0;
 
         switch (operador) {
             case '+':
-                this.valor = (val + Number(this.valor));
+                this.pila.push(val1 + val2);
                 break;
             case '-':
-                this.valor = (val - Number(this.valor));
+                this.pila.push(val1 - val2);
                 break;
             case '*':
-                this.valor = (val * Number(this.valor));
+                this.pila.push(val1 * val2);
                 break;
             case '/':
-                this.valor = (val / Number(this.valor));
+                if (val2 != 0)
+                    this.pila.push(val1 / val2);
                 break;
         }
-
-        this.editable = true;
 
         this.mostrarPila();
     }
@@ -68,23 +155,26 @@ class CalculadoraRPN {
             this.valor += ".";
         }
 
+        if (this.editable)
+            this.editable = false;
+
         this.mostrarPila();
     }
 
     sumar() {
-        this.operar("+");
+        this.basica("+");
     }
 
     restar() {
-        this.operar("-");
+        this.basica("-");
     }
 
     dividir() {
-        this.operar("/");
+        this.basica("/");
     }
 
     multiplicar() {
-        this.operar("*");
+        this.basica("*");
     }
 
     sin() {
@@ -116,33 +206,53 @@ class CalculadoraRPN {
         this.mostrarPila();
     }
 
-    trigonometrica(operador) {
-        var val = this.valor;
+    borrarPila() {
+        this.pila = [];
+        this.valor = "0";
+        this.mostrarPila();
+    }
 
-        switch (operador) {
-            case "sin":
-                this.valor = (Math.sin(val));
-                break;
-            case "cos":
-                this.valor = (Math.cos(val));
-                break;
-            case "tan":
-                this.valor = (Math.tan(val));
-                break;
-            case "arcsin":
-                this.valor = (Math.asin(val));
-                break;
-            case "arccos":
-                this.valor = (Math.acos(val));
-                break;
-            case "arctan":
-                this.valor = (Math.atan(val));
-                break;
-            default:
-                this.valor = (val);
-                break;
-        }
+    trigonometrica(operador) {
+        var val = this.pila.pop();
+
+        if (val != NaN || val != null)
+            switch (operador) {
+                case "sin":
+                    this.pila.push(Math.sin(val));
+                    break;
+                case "cos":
+                    this.pila.push(Math.cos(val));
+                    break;
+                case "tan":
+                    this.pila.push(Math.tan(val));
+                    break;
+                case "arcsin":
+                    if (val >= -1 && val <= 1)
+                        this.pila.push(Math.asin(val));
+                    break;
+                case "arccos":
+                    if (val >= -1 && val <= 1)
+                        this.pila.push(Math.acos(val));
+                    break;
+                case "arctan":
+                    this.pila.push(Math.atan(val));
+                    break;
+            }
         this.editable = true;
+
+        this.mostrarPila();
+    }
+
+    masMenos() {
+        var val = Number(this.valor);
+
+        if (val > 0) {
+            this.valor = "-" + this.valor;
+        }
+
+        if (val < 0) {
+            this.valor = 0 - Number(this.valor);
+        }
 
         this.mostrarPila();
     }

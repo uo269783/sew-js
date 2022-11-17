@@ -21,7 +21,6 @@ section p {
     grid-template-columns: auto;
 }
 
-section+p,
 form p:nth-child(6) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

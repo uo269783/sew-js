@@ -54,6 +54,9 @@ class Calculadora {
                     this.igual();
                     break;
                 case 'c':
+                    this.borrarTodo();
+                    break;
+                case 'Backspace':
                     this.borrar();
                     break;
                 case '.':
@@ -82,8 +85,9 @@ class Calculadora {
     }
 
     digitos(value) {
-        var texto = document.getElementsByTagName("input")[0]
-        if (texto.value == "0" || this.editable == true) {
+        var texto = document.getElementsByTagName("input")[0];
+
+        if (texto.value == "0" || this.editable) {
             texto.value = value;
             this.editable = false;
         }
@@ -100,14 +104,19 @@ class Calculadora {
         this.editable = false;
     }
 
-    borrar() {
+    borrarTodo() {
         document.getElementsByTagName("input")[0].value = "0";
         this.anterior = null;
         this.editable = true;
         this.operador = null;
     }
 
-    operar(operador) {
+    borrar() {
+        document.getElementsByTagName("input")[0].value = "0";
+        this.editable = true;
+    }
+
+    basica(operador) {
         var texto = document.getElementsByTagName("input")[0];
         //no hay numero anterior
         if (this.anterior == null || this.editable) {
@@ -126,19 +135,19 @@ class Calculadora {
     }
 
     sumar() {
-        this.operar("+");
+        this.basica("+");
     }
 
     restar() {
-        this.operar("-");
+        this.basica("-");
     }
 
     multiplicar() {
-        this.operar("*");
+        this.basica("*");
     }
 
     dividir() {
-        this.operar("/");
+        this.basica("/");
     }
 
     raiz() {
@@ -157,6 +166,8 @@ class Calculadora {
         else {
             texto.value = eval(Number(this.anterior) + this.operador + Number(texto.value));
             this.editable = true;
+            this.anterior = null;
+            this.operador = null;
         }
     }
 

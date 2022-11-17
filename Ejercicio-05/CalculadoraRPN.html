@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="Daniel Fernández Bernardino" />
-    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora RPN</title>
     <link rel="stylesheet" type="text/css" href="CalculadoraRPN.css" />
     <script src="CalculadoraRPN.js"></script>
@@ -20,15 +20,15 @@
         <section>
             <h2>RPN</h2>
             <p>
-                <textarea readonly >0</textarea>
+                <textarea readonly ></textarea>
             </p>
+
+            <p><input type="text" readonly value="0"/></p>
         </section>
 
         <p>
-            <input type="button" value="CE" onclick="calculadora.borrar()" />
-            <input type="button" value="+/-" onclick="calculadora.masMenos()" />
-            <input type="button" value="√" onclick="calculadora.raiz()" />
-            <input type="button" value="%" onclick="calculadora.porcentaje()" />
+            <input type="button" value="CE" onclick="calculadora.borrarPila()" />
+            <input type="button" value="C" onclick="calculadora.borrar()" />
         </p>
 
         <p>
@@ -37,6 +37,7 @@
             <input type="button" value="9" onclick="calculadora.digitos(9)" />
             <input type="button" value="x" onclick="calculadora.multiplicar()" />
             <input type="button" value="/" onclick="calculadora.dividir()" />
+            <input type="button" value="√" onclick="calculadora.raiz()" />
         </p>
 
         <p>
@@ -61,6 +62,7 @@
             <input type="button" value="." onclick="calculadora.punto()" />
             <input type="button" value="0" onclick="calculadora.digitos(0)" />
             <input type="button" value="enter" onclick="calculadora.enter()" />
+            <input type="button" value="+/-" onclick="calculadora.masMenos()" />
             <input type="button" value="tan" onclick="calculadora.tan()" />
             <input type="button" value="tan-1" onclick="calculadora.arctan()" />
         </p>
