@@ -317,7 +317,9 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     arcsin() {
-        
+        if (this.valor >= -1 && this.valor <= 1)
+            this.formula += Math.asin(this.valor);
+        this.valor = "0";
     }
 
     shift() {
