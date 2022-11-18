@@ -8,36 +8,8 @@ form {
     background-color: #be84a3;
     border: 0.125em solid purple;
     width: fit-content;
-}
-
-form p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin: 0 2% 0;
-}
-
-section {
-    display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
-}
-
-section p {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 0;
-}
-
-form p:nth-child(4) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-form p:nth-child(8) {
-    margin-bottom: 2%;
-}
-
-section+p {
-    margin-top: 5%;
 }
 
 header {
@@ -71,6 +43,22 @@ input[type=button] {
 
 input[type=text] {
     text-align: right;
+    grid-column-start: 1;
+    grid-column-end: span 5;
+}
+
+input[type=text]:first-of-type {
+    grid-row-start: 3;
+    grid-row-end: span 2;
+}
+
+label {
+    grid-column-start: 1;
+    grid-column-end: span 5;
+}
+
+input[type=text]:last-of-type {
+    margin-bottom: 2%;
 }
 
 textarea {

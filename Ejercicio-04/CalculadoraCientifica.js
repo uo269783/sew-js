@@ -162,16 +162,13 @@ class Calculadora {
     }
 
     raiz() {
-
         if (Number(this.valor) > 0) {
             this.valor = Math.sqrt(Number(this.valor));
         }
-
         this.mostrarTexto();
     }
 
     igual() {
-
         if (this.anterior == null) {
             this.valor = this.valor;
         }
@@ -186,8 +183,6 @@ class Calculadora {
     }
 
     porcentaje() {
-
-
         if (this.anterior == null) { //si no hay anterior, simplemente se pone a 0
             this.valor = "0";
         }
@@ -201,11 +196,7 @@ class Calculadora {
     }
 
     masMenos() {
-        if (Number(this.valor) > 0)
-            this.valor = Number("-" + this.valor);
-        else
-            this.valor = eval("0-" + Number(this.valor));
-
+        this.valor = eval(Number(this.valor) + "*-1");
         this.mostrarTexto();
     }
 
@@ -232,6 +223,7 @@ class CalculadoraCientifica extends Calculadora {
     constructor() {
         super();
         this.formula = "";
+        this.trig = "rad";
     }
 
     mostrarTexto() {
@@ -289,6 +281,12 @@ class CalculadoraCientifica extends Calculadora {
     borrarTodo() {
         this.formula = "";
         this.valor = "0";
+        this.mostrarTexto();
+    }
+
+    borrar() {
+        this.valor = "0";
+        this.mostrarTexto();
     }
 
     abreParentesis() {
