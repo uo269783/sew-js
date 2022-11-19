@@ -17,58 +17,62 @@
     </header>
 
     <form>
-        
-            <h2>Windows</h2>
-            
-            <label for="formula">Resultado</label>
-                <input id="formula" type="text" readonly />
-            <label for="valor">Valor</label>
-                <input id="valor" type="text" readonly value="0" />
-            
-        
-        
-            <input type="button" value="x^2" onclick="calculadora.cuadrado()" />
-            <input type="button" value="x^y" onclick="calculadora.potencia()" />
-            <input type="button" value="sin" onclick="calculadora.sin()" />
-            <input type="button" value="cos" onclick="calculadora.cos()" />
-            <input type="button" value="tan" onclick="calculadora.tan()" />
-        
-            <input type="button" value="√" onclick="calculadora.raiz()" />
-            <input type="button" value="10^x" onclick="calculadora.potencia10()" />
-            <input type="button" value="log" onclick="calculadora.logaritmo()" />
-            <input type="button" value="Exp" onclick="calculadora.exponencial()" />
-            <input type="button" value="Mod" onclick="calculadora.modulo()" />
-        
-            <input type="button" value="shift" onclick="calculadora.shift()" />
-            <input type="button" value="CE" onclick="calculadora.borrarTodo()" />
-            <input type="button" value="C" onclick="calculadora.borrar()" />
-            <input type="button" value="<-" onclick="calculadora.retroceder()" />
-            <input type="button" value="%" onclick="calculadora.porcentaje()" />
-        
-            <input type="button" value="π" onclick="calculadora.digitos('pi')" />
-            <input type="button" value="7" onclick="calculadora.digitos(7)" />
-            <input type="button" value="8" onclick="calculadora.digitos(8)" />
-            <input type="button" value="9" onclick="calculadora.digitos(9)" />
-            <input type="button" value="x" onclick="calculadora.multiplicar()" />
-       
-            <input type="button" value="n!" onclick="calculadora.factorial()" />
-            <input type="button" value="4" onclick="calculadora.digitos(4)" />
-            <input type="button" value="5" onclick="calculadora.digitos(5)" />
-            <input type="button" value="6" onclick="calculadora.digitos(6)" />
-            <input type="button" value="-" onclick="calculadora.restar()" />
-        
-            <input type="button" value="+/-" onclick="calculadora.masMenos()" />
-            <input type="button" value="1" onclick="calculadora.digitos(1)" />
-            <input type="button" value="2" onclick="calculadora.digitos(2)" />
-            <input type="button" value="3" onclick="calculadora.digitos(3)" />
-            <input type="button" value="+" onclick="calculadora.sumar()" />
-        
-            <input type="button" value="(" onclick="calculadora.abreParentesis()" />
-            <input type="button" value=")" onclick="calculadora.cierraParentesis()" />
-            <input type="button" value="0" onclick="calculadora.digitos(0)" />
-            <input type="button" value="." onclick="calculadora.punto()" />
-            <input type="button" value="=" onclick="calculadora.igual()" />
-        
+
+        <h2>Windows</h2>
+
+        <label for="formula">Resultado</label>
+        <input id="formula" type="text" readonly />
+        <label for="valor">Valor</label>
+        <input id="valor" type="text" readonly value="0" />
+
+        <p>
+            <input type="button" value="DEG" onclick="calculadora.cambiarGrados()">
+            <input type="button" value="HYP" onclick="calculadora.toggleHyp()">
+            <input type="button" value="F-E" onclick="calculadora.toggleFE()">
+        </p>
+
+        <input type="button" value="x^2" onclick="calculadora.cuadrado()" />
+        <input type="button" value="x^y" onclick="calculadora.potencia()" />
+        <input type="button" value="sin" onclick="calculadora.trigonometrica('sin')" />
+        <input type="button" value="cos" onclick="calculadora.trigonometrica('cos')" />
+        <input type="button" value="tan" onclick="calculadora.trigonometrica('tan')" />
+
+        <input type="button" value="√" onclick="calculadora.raiz()" />
+        <input type="button" value="10^x" onclick="calculadora.potencia10()" />
+        <input type="button" value="log" onclick="calculadora.logaritmo()" />
+        <input type="button" value="Exp" onclick="calculadora.exponencial()" />
+        <input type="button" value="Mod" onclick="calculadora.modulo()" />
+
+        <input type="button" value="shift" onclick="calculadora.shift()" />
+        <input type="button" value="CE" onclick="calculadora.borrar()" />
+        <input type="button" value="C" onclick="calculadora.borrarTodo()" />
+        <input type="button" value="<-" onclick="calculadora.retroceder()" />
+        <input type="button" value="%" onclick="calculadora.dividir()" />
+
+        <input type="button" value="π" onclick="calculadora.digitos('pi')" />
+        <input type="button" value="7" onclick="calculadora.digitos(7)" />
+        <input type="button" value="8" onclick="calculadora.digitos(8)" />
+        <input type="button" value="9" onclick="calculadora.digitos(9)" />
+        <input type="button" value="x" onclick="calculadora.multiplicar()" />
+
+        <input type="button" value="n!" onclick="calculadora.factorial()" />
+        <input type="button" value="4" onclick="calculadora.digitos(4)" />
+        <input type="button" value="5" onclick="calculadora.digitos(5)" />
+        <input type="button" value="6" onclick="calculadora.digitos(6)" />
+        <input type="button" value="-" onclick="calculadora.restar()" />
+
+        <input type="button" value="+/-" onclick="calculadora.masMenos()" />
+        <input type="button" value="1" onclick="calculadora.digitos(1)" />
+        <input type="button" value="2" onclick="calculadora.digitos(2)" />
+        <input type="button" value="3" onclick="calculadora.digitos(3)" />
+        <input type="button" value="+" onclick="calculadora.sumar()" />
+
+        <input type="button" value="(" onclick="calculadora.abreParentesis()" />
+        <input type="button" value=")" onclick="calculadora.cierraParentesis()" />
+        <input type="button" value="0" onclick="calculadora.digitos(0)" />
+        <input type="button" value="." onclick="calculadora.punto()" />
+        <input type="button" value="=" onclick="calculadora.igual()" />
+
 
     </form>
 

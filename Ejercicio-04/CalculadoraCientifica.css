@@ -10,6 +10,15 @@ form {
     width: fit-content;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 1%;
+}
+
+form p {
+    grid-column-start: 1;
+    grid-column-end: span 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 0%;
 }
 
 header {
@@ -38,7 +47,7 @@ input {
 
 input[type=button] {
     height: 2em;
-    margin: 0;
+    margin: 1%;
 }
 
 input[type=text] {

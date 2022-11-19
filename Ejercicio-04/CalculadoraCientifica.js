@@ -223,15 +223,9 @@ class CalculadoraCientifica extends Calculadora {
     constructor() {
         super();
         this.formula = "";
-        this.trig = "rad";
-    }
-
-    mostrarTexto() {
-        var txFormula = document.getElementsByTagName("input")[0];
-        var txValor = document.getElementsByTagName("input")[1];
-
-        txFormula.value = this.formula;
-        txValor.value = this.valor;
+        this.grados = "deg";
+        this.hyp = false;
+        this.shiftPulsado = false;
     }
 
     basica(operador) {
@@ -242,7 +236,7 @@ class CalculadoraCientifica extends Calculadora {
         }
 
         else {
-            this.formula += operador;
+            this.formula = this.valor + operador;
             this.valor = "0";
             this.editable = false;
         }
@@ -284,6 +278,10 @@ class CalculadoraCientifica extends Calculadora {
         this.mostrarTexto();
     }
 
+    modulo() {
+        this.basica("%");
+    }
+
     borrar() {
         this.valor = "0";
         this.mostrarTexto();
@@ -295,41 +293,165 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     cierraParentesis() {
-        this.formula += ")";
+        this.formula += this.valor + ")";
+        this.valor = "0";
+        this.mostrarTexto();
+    }
+
+    trigonometrica(operador) {
+        var value;
+        switch (operador) {
+            case "sin":
+                value = this.sin();
+                break;
+            case "cos":
+                value = this.cos();
+                break;
+            case "tan":
+                value = this.tan();
+                break;
+        }
+
+        if (this.editable) {
+            this.formula = value;
+        }
+        else {
+            this.formula += value;
+        }
+
+        this.valor = "0";
+        this.editable = true;
         this.mostrarTexto();
     }
 
     sin() {
-        this.formula += Math.sin(this.valor);
-        this.valor = "0";
+        if (this.hyp) {
+            if (this.shiftPulsado)
+                return Math.asinh(this.valor);
+            else {
+                return Math.sinh(this.valor);
+            }
+        }
+        else {
+            if (this.shiftPulsado) {
+                if (this.valor <= 1 && this.valor >= -1)
+                    return Math.asin(this.valor);
+
+            }
+            else {
+                return Math.sin(this.valor);
+            }
+        }
+
+
     }
 
     cos() {
-        this.formula += Math.cos(this.valor);
-        this.valor = "0";
+        if (this.hyp) {
+            if (this.shiftPulsado)
+                return Math.acosh(this.valor);
+            else {
+                return Math.cosh(this.valor);
+            }
+        }
+        else {
+            if (this.shiftPulsado) {
+                if (this.valor <= 1 && this.valor >= -1)
+                    return Math.acos(this.valor);
+
+            }
+            else {
+                return Math.cos(this.valor);
+            }
+        }
     }
 
     tan() {
-        this.formula += Math.tan(this.valor);
-        this.valor = "0";
+        if (this.hyp) {
+            if (this.shiftPulsado)
+                return Math.atanh(this.valor);
+            else {
+                return Math.tanh(this.valor);
+            }
+        }
+        else {
+            if (this.shiftPulsado) {
+                return Math.tans(this.valor);
+
+            }
+            else {
+                return Math.tan(this.valor);
+            }
+        }
     }
 
-    arcsin() {
-        if (this.valor >= -1 && this.valor <= 1)
-            this.formula += Math.asin(this.valor);
-        this.valor = "0";
+    cambiarGrados() {
+        switch (this.grados) {
+            case "deg":
+                this.grados = "rad";
+                break;
+            case "rad":
+                this.grados = "grad";
+                break;
+            case "grad":
+                this.grados = "deg";
+                break;
+        }
+
+        document.getElementsByTagName("input")[2].value = this.grados.toUpperCase();
     }
 
     shift() {
+        this.shiftPulsado = !this.shiftPulsado;
+        this.cambiarBotones();
+    }
 
-        if (!shiftPulsado) {
-            var btsin = document.getElementsByTagName("input")[4];
-            var btcos = document.getElementsByTagName("input")[5];
-            var bttan = document.getElementsByTagName("input")[6];
+    toggleHyp() {
+        this.hyp = !this.hyp;
+    }
 
-            btsin.value = "sin-1";
-            btsin.onclick(this.arcsin);
+    toggleFE() {
+        this.fe = !this.fe;
+    }
+
+    cambiarBotones() {
+        var btsin = document.getElementsByTagName("input")[7];
+        var btcos = document.getElementsByTagName("input")[8];
+        var bttan = document.getElementsByTagName("input")[9];
+
+        if (this.shiftPulsado) {
+            if (this.hyp) {
+                btsin.value = "sinh-1";
+                btcos.value = "cosh-1";
+                bttan.value = "tanh-1";
+            }
+            else {
+                btsin.value = "sin-1";
+                btcos.value = "cos-1";
+                bttan.value = "tan-1";
+            }
         }
+
+        else {
+            if (this.hyp) {
+                btsin.value = "sinh";
+                btcos.value = "cosh";
+                bttan.value = "tanh";
+            }
+            else {
+                btsin.value = "sin";
+                btcos.value = "cos";
+                bttan.value = "tan";
+            }
+        }
+    }
+
+    mostrarTexto() {
+        var txFormula = document.getElementsByTagName("input")[0];
+        var txValor = document.getElementsByTagName("input")[1];
+
+        txFormula.value = this.formula;
+        txValor.value = this.valor;
     }
 
 }

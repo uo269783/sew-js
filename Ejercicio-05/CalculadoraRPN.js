@@ -116,6 +116,13 @@ class CalculadoraRPN {
     }
 
     enter() {
+        var check = this.pila.pop();
+
+        if (check != null && !isNaN(check) && isFinite(check)) {
+            //en caso de que se produzca algun error en una operacion
+            this.pila.push(check);
+        }
+
         this.pila.push(Number(this.valor));
         this.valor = "0";
         this.mostrarPila();
@@ -126,9 +133,9 @@ class CalculadoraRPN {
         var val2 = this.pila.pop();
         var val1 = this.pila.pop();
 
-        if (val1 == NaN || val1 == null)
+        if (isNaN(val1) || val1 == null || !isFinite(val1))
             val1 = 0;
-        if (val2 == NaN || val2 == null)
+        if (isNaN(val2) || val2 == null || !isFinite(val2))
             val2 = 0;
 
         switch (operador) {
@@ -142,8 +149,7 @@ class CalculadoraRPN {
                 this.pila.push(val1 * val2);
                 break;
             case '/':
-                if (val2 != 0)
-                    this.pila.push(val1 / val2);
+                this.pila.push(val1 / val2);
                 break;
         }
 
@@ -227,12 +233,10 @@ class CalculadoraRPN {
                     this.pila.push(Math.tan(val));
                     break;
                 case "arcsin":
-                    if (val >= -1 && val <= 1)
-                        this.pila.push(Math.asin(val));
+                    this.pila.push(Math.asin(val));
                     break;
                 case "arccos":
-                    if (val >= -1 && val <= 1)
-                        this.pila.push(Math.acos(val));
+                    this.pila.push(Math.acos(val));
                     break;
                 case "arctan":
                     this.pila.push(Math.atan(val));
@@ -244,16 +248,14 @@ class CalculadoraRPN {
     }
 
     masMenos() {
-        var val = Number(this.valor);
+        var val = this.pila.pop();
+        this.pila.push(-1 * val);
+        this.mostrarPila();
+    }
 
-        if (val > 0) {
-            this.valor = "-" + this.valor;
-        }
-
-        if (val < 0) {
-            this.valor = 0 - Number(this.valor);
-        }
-
+    raiz() {
+        var val = this.pila.pop();
+        this.pila.push(Math.sqrt(val));
         this.mostrarPila();
     }
 
