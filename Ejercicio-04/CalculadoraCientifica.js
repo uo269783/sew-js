@@ -52,6 +52,7 @@ class Calculadora {
                     this.dividir();
                     break;
                 case 'Enter':
+                    event.preventDefault();
                     this.igual();
                     break;
                 case 'c':
@@ -136,7 +137,7 @@ class Calculadora {
 
         //hay numero anterior
         else {
-            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
+            this.valor = "" + eval(Number(this.anterior) + this.operador + Number(this.valor));
             this.anterior = this.valor;
             this.editable = true;
             this.operador = operador;
@@ -163,17 +164,18 @@ class Calculadora {
 
     raiz() {
         if (Number(this.valor) > 0) {
-            this.valor = Math.sqrt(Number(this.valor));
+            this.valor = "" + Math.sqrt(Number(this.valor));
+            this.editable = true;
         }
         this.mostrarTexto();
     }
 
     igual() {
         if (this.anterior == null) {
-            this.valor = this.valor;
+            this.valor = "" + this.valor;
         }
         else {
-            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
+            this.valor = "" + eval(Number(this.anterior) + this.operador + Number(this.valor));
             this.editable = true;
             this.anterior = null;
             this.operador = null;
@@ -188,7 +190,7 @@ class Calculadora {
         }
         else {
             var percent = Number(this.valor);
-            this.valor = eval(Number(this.anterior) * percent / 100);
+            this.valor = "" + eval(Number(this.anterior) * percent / 100);
             this.editable = true;
         }
 
@@ -196,7 +198,7 @@ class Calculadora {
     }
 
     masMenos() {
-        this.valor = eval(Number(this.valor) + "*-1");
+        this.valor = "" + eval(Number(this.valor) + "*-1");
         this.mostrarTexto();
     }
 
@@ -229,16 +231,24 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     basica(operador) {
-
-        if (!this.editable) {
-            this.formula += this.valor + operador;
-            this.valor = "0";
+        if (this.anterior != null) { //solo se cambia el valor de anterior con el metodo potencia()
+            this.valor = "" + Math.pow(Number(this.anterior), Number(this.valor));
+            this.anterior = null;
         }
-
+        if (this.formula != null && this.formula.charAt(this.formula.length - 1) == ')') {
+            this.formula += operador;
+        }
         else {
-            this.formula = this.valor + operador;
-            this.valor = "0";
-            this.editable = false;
+            if (!this.editable) {
+                this.formula += this.valor + operador;
+                this.valor = "0";
+            }
+
+            else {
+                this.formula = this.valor + operador;
+                this.valor = "0";
+                this.editable = false;
+            }
         }
 
         this.mostrarTexto();
@@ -261,15 +271,56 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     igual() {
-        if (this.editable) {
-            this.formula = this.valor;
+        if (this.anterior != null) { //solo se cambia el valor de anterior con el metodo potencia()
+            this.valor = "" + Math.pow(Number(this.anterior), Number(this.valor));
+            this.anterior = null;
         }
-        else {
-            this.formula += this.valor;
-            this.valor = eval(this.formula);
+        try {
+            if (this.valor == "0") {
+                try {
+                    this.valor = eval(this.formula);
+                    this.editable = true;
+                } catch (exception) {
+                    this.formula += this.valor
+                    this.valor = eval(this.formula)
+                    this.editable = true;
+                }
+            }
+            else {
+
+                if (this.editable) {
+                    if (!this.ultimoCharEsNumero()) {
+                        this.formula += this.valor;
+                        this.valor = eval(this.formula);
+                        this.editable = true;
+                    } else {
+                        this.formula = "" + this.valor;
+                        this.editable = true;
+                    }
+                }
+                else {
+                    this.formula += this.valor;
+                    this.valor = eval(this.formula);
+                    this.editable = true;
+                }
+            }
+        } catch (exception) {
+            this.valor = "Math Error";
             this.editable = true;
         }
+
         this.mostrarTexto();
+    }
+
+    ultimoCharEsNumero() {
+        var char = this.formula.charAt(this.formula.length - 1);
+
+        for (var i = 0; i <= 9; i++) {
+            if (char == "" + i)
+                return true;
+        }
+
+        return false;
     }
 
     borrarTodo() {
@@ -287,8 +338,22 @@ class CalculadoraCientifica extends Calculadora {
         this.mostrarTexto();
     }
 
+    retroceder() {
+        if (this.valor.length > 0)
+            this.valor = this.valor.substring(0, this.valor.length - 1);
+
+        if (this.valor == "")
+            this.valor = "0";
+        this.mostrarTexto();
+    }
+
     abreParentesis() {
-        this.formula += "(";
+        if (this.editable) {
+            this.formula = "(";
+            this.editable = false;
+        }
+        else
+            this.formula += "(";
         this.mostrarTexto();
     }
 
@@ -300,6 +365,16 @@ class CalculadoraCientifica extends Calculadora {
 
     trigonometrica(operador) {
         var value;
+
+        if (this.grados == "deg") {
+            console.log(this.valor);
+            this.valor = parseFloat(Number(this.valor)) * (Math.PI / 180);
+            console.log(this.valor);
+        }
+        else if (this.grados == "grad") {
+            this.valor = Number(this.valor) * 63.662;
+        }
+
         switch (operador) {
             case "sin":
                 value = this.sin();
@@ -312,15 +387,8 @@ class CalculadoraCientifica extends Calculadora {
                 break;
         }
 
-        if (this.editable) {
-            this.formula = value;
-        }
-        else {
-            this.formula += value;
-        }
-
-        this.valor = "0";
         this.editable = true;
+        this.valor = "" + value;
         this.mostrarTexto();
     }
 
@@ -385,6 +453,21 @@ class CalculadoraCientifica extends Calculadora {
         }
     }
 
+    logaritmo() {
+        var value;
+        if (this.shiftPulsado)
+            value = Math.log(Number(this.valor));
+        else
+            value = Math.log10(Number(this.valor));
+
+        if (this.editable) {
+            this.formula = value
+        }
+        else {
+            this.formula += value;
+        }
+    }
+
     cambiarGrados() {
         switch (this.grados) {
             case "deg":
@@ -401,6 +484,39 @@ class CalculadoraCientifica extends Calculadora {
         document.getElementsByTagName("input")[2].value = this.grados.toUpperCase();
     }
 
+    factorial() {
+        var fact = 1;
+
+        for (var i = 1; i <= this.valor; i++) {
+            fact *= i;
+        }
+
+        this.valor = "" + fact;
+        this.mostrarTexto();
+    }
+
+    potencia() {
+        this.anterior = this.valor;
+        this.valor = "0";
+        this.mostrarTexto();
+    }
+
+    pi() {
+        this.valor = "" + Math.PI;
+        this.mostrarTexto();
+    }
+
+    potencia10() {
+        var val = Math.pow(10, Number(this.valor));
+        this.valor = "" + val;
+        this.mostrarTexto();
+    }
+
+    cuadrado() {
+        this.valor = "" + Math.pow(Number(this.valor), 2);
+        this.mostrarTexto();
+    }
+
     shift() {
         this.shiftPulsado = !this.shiftPulsado;
         this.cambiarBotones();
@@ -408,18 +524,35 @@ class CalculadoraCientifica extends Calculadora {
 
     toggleHyp() {
         this.hyp = !this.hyp;
+        this.cambiarBotones();
     }
 
     toggleFE() {
         this.fe = !this.fe;
+        this.mostrarTexto();
+    }
+
+    memoria0() {
+        this.memoria = "0";
+    }
+
+    memoriaAlmacenar() {
+        this.memoria = "" + Number(this.valor);
+    }
+
+    exponencial() {
+        this.valor = this.valor + "e+";
+        this.mostrarTexto();
     }
 
     cambiarBotones() {
-        var btsin = document.getElementsByTagName("input")[7];
-        var btcos = document.getElementsByTagName("input")[8];
-        var bttan = document.getElementsByTagName("input")[9];
+        var btsin = document.getElementsByTagName("input")[12];
+        var btcos = document.getElementsByTagName("input")[13];
+        var bttan = document.getElementsByTagName("input")[14];
+        var btLog = document.getElementsByTagName("input")[17];
 
         if (this.shiftPulsado) {
+            btLog.value = "ln";
             if (this.hyp) {
                 btsin.value = "sinh-1";
                 btcos.value = "cosh-1";
@@ -433,6 +566,7 @@ class CalculadoraCientifica extends Calculadora {
         }
 
         else {
+            btLog.value = "log";
             if (this.hyp) {
                 btsin.value = "sinh";
                 btcos.value = "cosh";
@@ -451,7 +585,10 @@ class CalculadoraCientifica extends Calculadora {
         var txValor = document.getElementsByTagName("input")[1];
 
         txFormula.value = this.formula;
-        txValor.value = this.valor;
+        if (this.fe)
+            txValor.value = parseFloat(this.valor).toExponential();
+        else
+            txValor.value = this.valor;
     }
 
 }

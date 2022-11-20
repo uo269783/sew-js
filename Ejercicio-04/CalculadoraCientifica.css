@@ -16,9 +16,9 @@ form {
 form p {
     grid-column-start: 1;
     grid-column-end: span 5;
+    margin-bottom: 0%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 0%;
 }
 
 header {
@@ -54,11 +54,6 @@ input[type=text] {
     text-align: right;
     grid-column-start: 1;
     grid-column-end: span 5;
-}
-
-input[type=text]:first-of-type {
-    grid-row-start: 3;
-    grid-row-end: span 2;
 }
 
 label {

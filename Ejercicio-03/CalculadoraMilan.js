@@ -52,6 +52,7 @@ class Calculadora {
                     this.dividir();
                     break;
                 case 'Enter':
+                    event.preventDefault();
                     this.igual();
                     break;
                 case 'c':
@@ -136,7 +137,7 @@ class Calculadora {
 
         //hay numero anterior
         else {
-            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
+            this.valor = "" + eval(Number(this.anterior) + this.operador + Number(this.valor));
             this.anterior = this.valor;
             this.editable = true;
             this.operador = operador;
@@ -163,17 +164,18 @@ class Calculadora {
 
     raiz() {
         if (Number(this.valor) > 0) {
-            this.valor = Math.sqrt(Number(this.valor));
+            this.valor = "" + Math.sqrt(Number(this.valor));
+            this.editable = true;
         }
         this.mostrarTexto();
     }
 
     igual() {
         if (this.anterior == null) {
-            this.valor = this.valor;
+            this.valor = "" + this.valor;
         }
         else {
-            this.valor = eval(Number(this.anterior) + this.operador + Number(this.valor));
+            this.valor = "" + eval(Number(this.anterior) + this.operador + Number(this.valor));
             this.editable = true;
             this.anterior = null;
             this.operador = null;
@@ -188,7 +190,7 @@ class Calculadora {
         }
         else {
             var percent = Number(this.valor);
-            this.valor = eval(Number(this.anterior) * percent / 100);
+            this.valor = "" + eval(Number(this.anterior) * percent / 100);
             this.editable = true;
         }
 
@@ -196,7 +198,7 @@ class Calculadora {
     }
 
     masMenos() {
-        this.valor = eval(Number(this.valor) + "*-1");
+        this.valor = "" + eval(Number(this.valor) + "*-1");
         this.mostrarTexto();
     }
 
