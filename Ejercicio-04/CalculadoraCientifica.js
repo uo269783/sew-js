@@ -366,13 +366,13 @@ class CalculadoraCientifica extends Calculadora {
     trigonometrica(operador) {
         var value;
 
-        if (this.grados == "deg") {
-            console.log(this.valor);
-            this.valor = parseFloat(Number(this.valor)) * (Math.PI / 180);
-            console.log(this.valor);
-        }
-        else if (this.grados == "grad") {
-            this.valor = Number(this.valor) * 63.662;
+        if (!this.shiftPulsado) {
+            if (this.grados == "deg") {
+                this.valor = Number(this.valor) * (Math.PI / 180);
+            }
+            else if (this.grados == "grad") {
+                this.valor = Number(this.valor) * 63.662;
+            }
         }
 
         switch (operador) {
@@ -385,6 +385,15 @@ class CalculadoraCientifica extends Calculadora {
             case "tan":
                 value = this.tan();
                 break;
+        }
+
+        if (this.shiftPulsado) {
+            if (this.grados == "deg") {
+                value = value * (180 / Math.PI);
+            }
+            else if (this.grados == "grad") {
+                value = Number(value) / 63.662;
+            }
         }
 
         this.editable = true;
@@ -466,6 +475,8 @@ class CalculadoraCientifica extends Calculadora {
         else {
             this.formula += value;
         }
+        this.editable = true;
+        this.mostrarTexto();
     }
 
     cambiarGrados() {
@@ -533,11 +544,11 @@ class CalculadoraCientifica extends Calculadora {
     }
 
     memoria0() {
-        this.memoria = "0";
+        this.memoria = 0;
     }
 
     memoriaAlmacenar() {
-        this.memoria = "" + Number(this.valor);
+        this.memoria = Number(this.valor);
     }
 
     exponencial() {
