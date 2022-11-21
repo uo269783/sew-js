@@ -1,5 +1,3 @@
-
-
 class CalculadoraRPN {
 
     constructor() {
@@ -261,4 +259,218 @@ class CalculadoraRPN {
 
 }
 
-var calculadora = new CalculadoraRPN();
+class CalculadoraEspecializada extends CalculadoraRPN {
+
+    constructor() {
+        super()
+        this.escribir = false;
+    }
+
+    basica(operador) {
+
+        if (!this.escribir) {
+            super.basica(operador);
+        }
+
+        else {
+
+            this.valor += operador;
+
+            this.mostrarPila();
+        }
+    }
+
+    enter() {
+        if (!this.escribir)
+            super.enter();
+        else {
+            this.pila.push(this.valor);
+            this.valor = "0";
+        }
+
+        this.mostrarPila();
+    }
+
+    toggleEscribir() {
+        var btEsc = document.getElementsByTagName("input")[3];
+        this.escribir = !this.escribir;
+        btEsc.setAttribute("style", "background-color=black");
+    }
+
+    potencia() {
+        if (this.escribir) {
+            this.valor += "^";
+        }
+
+        else {
+            var val1 = this.pila.pop();
+            var val2 = this.pila.pop();
+
+            this.pila.push(Math.pow(val2, val1));
+        }
+
+        this.mostrarPila();
+    }
+
+    limite() {
+        var val = this.pila.pop();
+        var func = "" + this.pila.pop();
+
+        var mul = "";
+        var grado = "";
+        var esGrado = false;
+        var esMultiplicador = false;
+        var resultado = 0;
+        var operador = "+";
+
+        for (var i = 0; i < func.length; i++) {
+            if (i == func.length - 1) {
+                if (this.esNumero(func[i])) {
+                    if (esGrado)
+                        grado += func[i];
+                    if (esMultiplicador)
+                        mul += func[i];
+                    resultado += this.sustituirIncognita(grado, mul,)
+                }
+            }
+
+            if (this.esNumero(func[i])) {
+                if (esMultiplicador) {
+                    mul += func[i];
+                }
+
+                else if (esGrado) {
+                    grado += func[i];
+                }
+            }
+
+            else if (func[i] == "x") {
+                esGrado = true;
+                esMultiplicador = false;
+            }
+
+            else if (func[i] == "+" || func[i] == "-") {
+                operador = func[i];
+                if (esGrado && grado == "") {
+                    grado = "1";
+                }
+                resultado += this.sustituirIncognita(grado, mul, operador, val);
+
+                esGrado = false;
+                esMultiplicador = true;
+                grado = "";
+                mul = "";
+
+            }
+        }
+
+    }
+
+    sustituirIncognita(grado, multiplicador, operador, valor) {
+        var val = Math.pow(Number(valor), Number(grado))
+        val = val * Number(multiplicador)
+        if (operador == "-")
+            val = val * -1;
+        return val;
+    }
+
+    derivada() {
+        //ejemplo de funcion: 34*x^2+3*x-2
+        //resultado esperado: 68*x+3
+
+        if (this.pila.length != 0) {
+            //var func = "" + this.pila.pop();
+            var func = "34*x^2+3-2*x"
+            var mul = "";
+            var grado = "";
+            var esGrado = false;
+            var esMultiplicador = true;
+            var resultado = "";
+
+            for (var i = 0; i < func.length; i++) {
+                if (i == func.length - 1) {
+                    if (func[i] == "x") {
+                        resultado += this.derivarMonomio("1", mul, "");
+                    }
+                    else if (esGrado) {
+                        grado += func[i];
+                    }
+                    else if (esMultiplicador) {
+                        mul += func[i];
+                        grado = "0";
+                    }
+                    else if (grado != "0")
+                        resultado += this.derivarMonomio(grado, mul, "");
+                    if (grado == "0")
+                        resultado = resultado.substring(0, resultado.length - 1);
+                }
+
+                if (this.esNumero(func[i])) {
+                    if (esMultiplicador) {
+                        mul += func[i];
+                    }
+
+                    else if (esGrado) {
+                        grado += func[i];
+                    }
+                }
+
+                else if (func[i] == "x") {
+                    esGrado = true;
+                    esMultiplicador = false;
+                }
+
+                else if (func[i] == "+" || func[i] == "-") {
+                    if (esGrado && grado == "") {
+                        grado = "1";
+                    }
+                    resultado += this.derivarMonomio(grado, mul, func[i]);
+
+                    esGrado = false;
+                    esMultiplicador = true;
+                    grado = "";
+                    mul = "";
+
+                }
+            }
+
+            this.pila.push(resultado);
+            this.mostrarPila();
+        }
+    }
+
+    derivarMonomio(grado, multiplicador, operador) {
+        console.log(multiplicador);
+        console.log(grado);
+        var mulFin = Number(multiplicador) * Number(grado);
+        if (Number(grado) == 0)
+            return "";
+        if (Number(grado) - 1 == 0)
+            return "" + mulFin + operador
+        else if (Number(grado) - 1 == 1)
+            return "" + mulFin + "*x" + operador;
+        else
+            return "" + mulFin + "*x^" + (Number(grado) - 1) + operador;
+    }
+
+    esNumero(val) {
+        switch (val) {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+                return true;
+        }
+
+        return false;
+    }
+}
+
+
+var calculadora = new CalculadoraEspecializada();

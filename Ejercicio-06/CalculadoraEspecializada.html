@@ -6,8 +6,8 @@
     <meta name="author" content="Daniel Fernández Bernardino" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora RPN</title>
-    <link rel="stylesheet" type="text/css" href="CalculadoraRPN.css" />
-    <script src="CalculadoraRPN.js"></script>
+    <link rel="stylesheet" type="text/css" href="CalculadoraEspecializada.css" />
+    <script src="CalculadoraEspecializada.js"></script>
 </head>
 
 <body>
@@ -22,15 +22,19 @@
         <label for="valor">Valor</label>
         <input id="valor" type="text" readonly value="0" />
 
-        <p>
-            <input type="button" value="CE" onclick="calculadora.borrarPila()" />
-            <input type="button" value="C" onclick="calculadora.borrar()" />
-        </p>
+
+        <input type="button" value="CE" onclick="calculadora.borrarPila()" />
+        <input type="button" value="C" onclick="calculadora.borrar()" />
+        <input type="button" value="TYPE" onclick="calculadora.toggleEscribir()" />
+        <input type="button" value="der" onclick="calculadora.derivada()" />
+        <input type="button" value="x^y" onclick="calculadora.potencia()" />
+        <input type="button" value="x" onclick="calculadora.digitos('x')" />
+
 
         <input type="button" value="7" onclick="calculadora.digitos(7)" />
         <input type="button" value="8" onclick="calculadora.digitos(8)" />
         <input type="button" value="9" onclick="calculadora.digitos(9)" />
-        <input type="button" value="x" onclick="calculadora.multiplicar()" />
+        <input type="button" value="*" onclick="calculadora.multiplicar()" />
         <input type="button" value="/" onclick="calculadora.dividir()" />
         <input type="button" value="√" onclick="calculadora.raiz()" />
 

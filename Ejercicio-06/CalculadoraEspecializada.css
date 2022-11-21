@@ -13,14 +13,6 @@ form {
     padding: 0.5%;
 }
 
-form p {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-start: 1;
-    grid-column-end: span 6;
-    margin: 0;
-}
-
 header {
     background-color: #be84a3;
     border: solid 0.125em purple;
