@@ -4,6 +4,7 @@
 h1 {
     font-size: 2.5em;
     text-transform: uppercase;
+    /*Advertencia de color ya que se define de fondo pero no de primer plano porque se hereda de body*/
     background-color: #be84a3;
     padding: 2%;
 }
