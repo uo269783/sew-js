@@ -7,83 +7,7 @@ class Calculadora {
         this.valor = "0";
         this.memoria = Number(0);
 
-        document.addEventListener('keydown', (event) => {
-            switch (event.key) {
-                case '1':
-                    this.digitos(1);
-                    break;
-                case '2':
-                    this.digitos(2);
-                    break;
-                case '3':
-                    this.digitos(3);
-                    break;
-                case '4':
-                    this.digitos(4);
-                    break;
-                case '5':
-                    this.digitos(5);
-                    break;
-                case '6':
-                    this.digitos(6);
-                    break;
-                case '7':
-                    this.digitos(7);
-                    break;
-                case '8':
-                    this.digitos(8);
-                    break;
-                case '9':
-                    this.digitos(9);
-                    break;
-                case '0':
-                    this.digitos(0);
-                    break;
-                case '+':
-                    this.sumar();
-                    break;
-                case '-':
-                    this.restar();
-                    break;
-                case '*':
-                    this.multiplicar();
-                    break;
-                case '/':
-                    this.dividir();
-                    break;
-                case 'Enter':
-                    event.preventDefault();
-                    this.igual();
-                    break;
-                case 'c':
-                    this.borrarTodo();
-                    break;
-                case 'Backspace':
-                    this.borrar();
-                    break;
-                case '.':
-                    this.punto();
-                    break;
-                case 'r':
-                    this.raiz();
-                    break;
-                case 'm':
-                    this.mrc();
-                    break;
-                case 'n':
-                    this.mmenos();
-                    break;
-                case 'b':
-                    this.mmas();
-                    break;
-                case 's':
-                    this.masMenos();
-                    break;
-                case 'p':
-                    this.porcentaje();
-                    break;
-            }
-        });
+        document.addEventListener('keydown', (event) => this.procesarTeclas(event));
     }
 
     mostrarTexto() {
@@ -216,6 +140,85 @@ class Calculadora {
     mmenos() {
         this.memoria -= Number(this.valor);
         this.editable = true;
+    }
+
+    procesarTeclas(event) {
+        switch (event.key) {
+            case '1':
+                this.digitos(1);
+                break;
+            case '2':
+                this.digitos(2);
+                break;
+            case '3':
+                this.digitos(3);
+                break;
+            case '4':
+                this.digitos(4);
+                break;
+            case '5':
+                this.digitos(5);
+                break;
+            case '6':
+                this.digitos(6);
+                break;
+            case '7':
+                this.digitos(7);
+                break;
+            case '8':
+                this.digitos(8);
+                break;
+            case '9':
+                this.digitos(9);
+                break;
+            case '0':
+                this.digitos(0);
+                break;
+            case '+':
+                this.sumar();
+                break;
+            case '-':
+                this.restar();
+                break;
+            case 'x':
+                this.multiplicar();
+                break;
+            case '/':
+                this.dividir();
+                break;
+            case 'Enter':
+                event.preventDefault();
+                this.igual();
+                break;
+            case 'c':
+                this.borrarTodo();
+                break;
+            case 'Backspace':
+                this.borrar();
+                break;
+            case '.':
+                this.punto();
+                break;
+            case 'r':
+                this.raiz();
+                break;
+            case 'm':
+                this.mrc();
+                break;
+            case 'n':
+                this.mmenos();
+                break;
+            case 'b':
+                this.mmas();
+                break;
+            case 's':
+                this.masMenos();
+                break;
+            case 'p':
+                this.porcentaje();
+                break;
+        }
+
     }
 
 }

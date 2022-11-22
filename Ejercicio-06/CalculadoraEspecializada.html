@@ -5,28 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="author" content="Daniel Fernández Bernardino" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora RPN</title>
+    <title>Calculadora RPN Especializada</title>
     <link rel="stylesheet" type="text/css" href="CalculadoraEspecializada.css" />
     <script src="CalculadoraEspecializada.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>Calculadora RPN</h1>
+        <h1>Calculadora RPN Especializada</h1>
         <p>Daniel Fernández Bernardino, Software y Estándares para la Web</p>
     </header>
 
     <form>
-        <h2>RPN</h2>
+        <h2>RPN Especializada</h2>
         <textarea readonly></textarea>
         <label for="valor">Valor</label>
         <input id="valor" type="text" readonly value="0" />
 
+        <p>
+            <input type="button" value="TYPE" onclick="calculadora.toggleEscribir()" />
+        </p>
 
         <input type="button" value="CE" onclick="calculadora.borrarPila()" />
         <input type="button" value="C" onclick="calculadora.borrar()" />
-        <input type="button" value="TYPE" onclick="calculadora.toggleEscribir()" />
         <input type="button" value="der" onclick="calculadora.derivada()" />
+        <input type="button" value="lim" onclick="calculadora.limite()" />
         <input type="button" value="x^y" onclick="calculadora.potencia()" />
         <input type="button" value="x" onclick="calculadora.digitos('x')" />
 

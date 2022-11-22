@@ -5,89 +5,7 @@ class CalculadoraRPN {
         this.valor = "0";
         this.editable = false;
 
-        document.addEventListener('keydown', (event) => {
-            switch (event.key) {
-                case '1':
-                    this.digitos(1);
-                    break;
-                case '2':
-                    this.digitos(2);
-                    break;
-                case '3':
-                    this.digitos(3);
-                    break;
-                case '4':
-                    this.digitos(4);
-                    break;
-                case '5':
-                    this.digitos(5);
-                    break;
-                case '6':
-                    this.digitos(6);
-                    break;
-                case '7':
-                    this.digitos(7);
-                    break;
-                case '8':
-                    this.digitos(8);
-                    break;
-                case '9':
-                    this.digitos(9);
-                    break;
-                case '0':
-                    this.digitos(0);
-                    break;
-                case '+':
-                    this.sumar();
-                    break;
-                case '-':
-                    this.restar();
-                    break;
-                case '*':
-                    this.multiplicar();
-                    break;
-                case '/':
-                    this.dividir();
-                    break;
-                case 'Enter':
-                    this.enter();
-                    break;
-                case 'c':
-                    this.borrarPila();
-                    break;
-                case '.':
-                    this.punto();
-                    break;
-                case 'r':
-                    this.raiz();
-                    break;
-                case 'a':
-                    this.cos();
-                    break;
-                case 's':
-                    this.sin();
-                    break;
-                case 'd':
-                    this.tan();
-                    break;
-                case 'f':
-                    this.arccos();
-                    break;
-                case 'g':
-                    this.arcsin();
-                    break;
-                case 'h':
-                    this.arctan();
-                    break;
-                case 'Backspace':
-                    this.borrar();
-                    break;
-                case 'm':
-                    this.masMenos();
-                    break;
-
-            }
-        });
+        document.addEventListener('keydown', (event) => this.procesarTeclas(event));
     }
 
     mostrarPila() {
@@ -257,6 +175,94 @@ class CalculadoraRPN {
         this.mostrarPila();
     }
 
+    procesarTeclas(event) {
+        switch (event.key) {
+            case '1':
+                this.digitos(1);
+                break;
+            case '2':
+                this.digitos(2);
+                break;
+            case '3':
+                this.digitos(3);
+                break;
+            case '4':
+                this.digitos(4);
+                break;
+            case '5':
+                this.digitos(5);
+                break;
+            case '6':
+                this.digitos(6);
+                break;
+            case '7':
+                this.digitos(7);
+                break;
+            case '8':
+                this.digitos(8);
+                break;
+            case '9':
+                this.digitos(9);
+                break;
+            case '0':
+                this.digitos(0);
+                break;
+            case '+':
+                this.sumar();
+                break;
+            case '-':
+                this.restar();
+                break;
+            case 'x':
+                this.multiplicar();
+                break;
+            case '/':
+                this.dividir();
+                break;
+            case 'Enter':
+                this.enter();
+                break;
+            case 'c':
+                this.borrarPila();
+                break;
+            case '.':
+                this.punto();
+                break;
+            case 'r':
+                this.raiz();
+                break;
+            case 'a':
+                this.cos();
+                break;
+            case 's':
+                this.sin();
+                break;
+            case 'd':
+                this.tan();
+                break;
+            case 'f':
+                this.arccos();
+                break;
+            case 'g':
+                this.arcsin();
+                break;
+            case 'h':
+                this.arctan();
+                break;
+            case 'Backspace':
+                this.borrar();
+                break;
+            case 'm':
+                this.masMenos();
+                break;
+            case 't':
+                this.toggleEscribir();
+                break;
+
+
+        }
+    }
+
 }
 
 class CalculadoraEspecializada extends CalculadoraRPN {
@@ -315,13 +321,12 @@ class CalculadoraEspecializada extends CalculadoraRPN {
     limite() {
         var val = this.pila.pop();
         var func = "" + this.pila.pop();
-
         var mul = "";
         var grado = "";
         var esGrado = false;
-        var esMultiplicador = false;
+        var esMultiplicador = true;
         var resultado = 0;
-        var operador = "+";
+        var operador = "";
 
         for (var i = 0; i < func.length; i++) {
             if (i == func.length - 1) {
@@ -330,43 +335,71 @@ class CalculadoraEspecializada extends CalculadoraRPN {
                         grado += func[i];
                     if (esMultiplicador)
                         mul += func[i];
-                    resultado += this.sustituirIncognita(grado, mul,)
+                    resultado += this.sustituirIncognita(grado, mul, operador, val)
+                } if (func[i] == "x") {
+                    if (mul == "")
+                        mul = "1";
+                    resultado += this.sustituirIncognita("1", mul, operador, val)
                 }
             }
 
-            if (this.esNumero(func[i])) {
-                if (esMultiplicador) {
-                    mul += func[i];
+            else {
+                if (this.esNumero(func[i]) || func[i] == ".") {
+                    if (esMultiplicador) {
+                        console.log(mul)
+                        mul += func[i];
+                    }
+
+                    else if (esGrado) {
+                        grado += func[i];
+                    }
                 }
 
-                else if (esGrado) {
-                    grado += func[i];
+                else if (func[i] == "x") {
+                    esGrado = true;
+                    esMultiplicador = false;
+                    if (mul == "")
+                        mul = "1";
                 }
-            }
 
-            else if (func[i] == "x") {
-                esGrado = true;
-                esMultiplicador = false;
-            }
+                else if (func[i] == "+" || func[i] == "-") {
 
-            else if (func[i] == "+" || func[i] == "-") {
-                operador = func[i];
-                if (esGrado && grado == "") {
-                    grado = "1";
+                    if (operador != "") {
+
+                        if (esGrado && grado == "") {
+                            grado = "1";
+                        }
+
+                        resultado += this.sustituirIncognita(grado, mul, operador, val);
+
+                        esGrado = false;
+                        esMultiplicador = true;
+                        grado = "";
+                        mul = "";
+                        operador = func[i];
+                    }
+
+                    else {
+                        operador = func[i];
+                        resultado += this.sustituirIncognita(grado, mul, operador, val);
+
+                        esGrado = false;
+                        esMultiplicador = true;
+                        grado = "";
+                        mul = "";
+                    }
                 }
-                resultado += this.sustituirIncognita(grado, mul, operador, val);
-
-                esGrado = false;
-                esMultiplicador = true;
-                grado = "";
-                mul = "";
 
             }
         }
 
+        this.pila.push(resultado);
+        this.mostrarPila();
+
     }
 
     sustituirIncognita(grado, multiplicador, operador, valor) {
+        console.log(grado + "   " + multiplicador)
         var val = Math.pow(Number(valor), Number(grado))
         val = val * Number(multiplicador)
         if (operador == "-")
@@ -375,12 +408,9 @@ class CalculadoraEspecializada extends CalculadoraRPN {
     }
 
     derivada() {
-        //ejemplo de funcion: 34*x^2+3*x-2
-        //resultado esperado: 68*x+3
 
         if (this.pila.length != 0) {
-            //var func = "" + this.pila.pop();
-            var func = "34*x^2+3-2*x"
+            var func = "" + this.pila.pop();
             var mul = "";
             var grado = "";
             var esGrado = false;
@@ -405,7 +435,7 @@ class CalculadoraEspecializada extends CalculadoraRPN {
                         resultado = resultado.substring(0, resultado.length - 1);
                 }
 
-                if (this.esNumero(func[i])) {
+                if (this.esNumero(func[i]) || func[i] == ".") {
                     if (esMultiplicador) {
                         mul += func[i];
                     }
@@ -418,6 +448,8 @@ class CalculadoraEspecializada extends CalculadoraRPN {
                 else if (func[i] == "x") {
                     esGrado = true;
                     esMultiplicador = false;
+                    if (mul == "")
+                        mul = "1";
                 }
 
                 else if (func[i] == "+" || func[i] == "-") {
@@ -469,6 +501,98 @@ class CalculadoraEspecializada extends CalculadoraRPN {
         }
 
         return false;
+    }
+
+    procesarTeclas(event) {
+        switch (event.key) {
+            case '1':
+                this.digitos(1);
+                break;
+            case '2':
+                this.digitos(2);
+                break;
+            case '3':
+                this.digitos(3);
+                break;
+            case '4':
+                this.digitos(4);
+                break;
+            case '5':
+                this.digitos(5);
+                break;
+            case '6':
+                this.digitos(6);
+                break;
+            case '7':
+                this.digitos(7);
+                break;
+            case '8':
+                this.digitos(8);
+                break;
+            case '9':
+                this.digitos(9);
+                break;
+            case '0':
+                this.digitos(0);
+                break;
+            case '+':
+                this.sumar();
+                break;
+            case '-':
+                this.restar();
+                break;
+            case 'x':
+                this.digitos('x');
+                break;
+            case '/':
+                this.dividir();
+                break;
+            case 'Enter':
+                this.enter();
+                break;
+            case 'c':
+                this.borrarPila();
+                break;
+            case '.':
+                this.punto();
+                break;
+            case 'r':
+                this.raiz();
+                break;
+            case 'a':
+                this.cos();
+                break;
+            case 's':
+                this.sin();
+                break;
+            case 'd':
+                this.tan();
+                break;
+            case 'f':
+                this.arccos();
+                break;
+            case 'g':
+                this.arcsin();
+                break;
+            case 'h':
+                this.arctan();
+                break;
+            case 'Backspace':
+                this.borrar();
+                break;
+            case 'm':
+                this.masMenos();
+                break;
+            case 'q':
+                this.derivada();
+                break;
+            case 'w':
+                this.limite();
+                break;
+            case 'e':
+                this.potencia();
+                break;
+        }
     }
 }
 
