@@ -1,5 +1,5 @@
-document.write("Version: " + infoNavegador.version + "\n");
-document.write("Plataforma: " + infoNavegador.plataforma + "\n");
-document.write("Vendedor: " + infoNavegador.vendedor + "\n");
-document.write("Agente: " + infoNavegador.agente + "\n");
-document.write("¿Java?: " + infoNavegador.javaActivo + "\n");
+document.write("<p>Version: " + infoNavegador.version + "</p>");
+document.write("<p>Plataforma: " + infoNavegador.plataforma + "</p>");
+document.write("<p>Vendedor: " + infoNavegador.vendedor + "</p>");
+document.write("<p>Agente: " + infoNavegador.agente + "</p>");
+document.write("<p>¿Java?: " + infoNavegador.javaActivo + "</p>");
