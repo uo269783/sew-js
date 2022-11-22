@@ -217,33 +217,6 @@ class Calculadora {
             case 'p':
                 this.porcentaje();
                 break;
-            case 'e':
-                this.borrarTodo();
-                break;
-            case 'q':
-                this.cuadrado();
-                break;
-            case 'w':
-                this.potencia();
-                break;
-            case 't':
-                this.trigonometrica('sin');
-                break;
-            case 'y':
-                this.trigonometrica('cos');
-                break;
-            case 'u':
-                this.trigonometrica('tan');
-                break;
-            case 'i':
-                this.potencia10();
-                break;
-            case 'o':
-                this.logaritmo();
-                break;
-            case 'p':
-                this.exponencial();
-                break;
 
         }
 
@@ -671,7 +644,7 @@ class CalculadoraCientifica extends Calculadora {
             case '-':
                 this.restar();
                 break;
-            case 'x':
+            case '*':
                 this.multiplicar();
                 break;
             case '/':
@@ -714,12 +687,6 @@ class CalculadoraCientifica extends Calculadora {
             case 'c':
                 this.memoriaAlmacenar();
                 break;
-            case 'p':
-                this.porcentaje();
-                break;
-            case 'p':
-                this.porcentaje();
-                break;
             case 'a':
                 this.modulo();
                 break;
@@ -743,6 +710,33 @@ class CalculadoraCientifica extends Calculadora {
                 break;
             case 'k':
                 this.cambiarGrados();
+                break;
+            case 'q':
+                this.cuadrado();
+                break;
+            case 'w':
+                this.potencia();
+                break;
+            case 't':
+                this.trigonometrica('sin');
+                break;
+            case 'y':
+                this.trigonometrica('cos');
+                break;
+            case 'u':
+                this.trigonometrica('tan');
+                break;
+            case 'i':
+                this.potencia10();
+                break;
+            case 'o':
+                this.logaritmo();
+                break;
+            case 'z':
+                this.exponencial();
+                break;
+            case 'e':
+                this.borrarTodo();
                 break;
         }
     }

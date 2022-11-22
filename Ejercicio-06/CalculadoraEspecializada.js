@@ -213,7 +213,7 @@ class CalculadoraRPN {
             case '-':
                 this.restar();
                 break;
-            case 'x':
+            case '*':
                 this.multiplicar();
                 break;
             case '/':
@@ -592,6 +592,8 @@ class CalculadoraEspecializada extends CalculadoraRPN {
             case 'e':
                 this.potencia();
                 break;
+            case '*':
+                this.multiplicar();
         }
     }
 }

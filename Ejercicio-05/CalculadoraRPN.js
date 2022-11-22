@@ -215,7 +215,7 @@ class CalculadoraRPN {
             case '-':
                 this.restar();
                 break;
-            case 'x':
+            case '*':
                 this.multiplicar();
                 break;
             case '/':
