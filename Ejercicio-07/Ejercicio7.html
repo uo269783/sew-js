@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+
+    <!--Metadatos de los documentos HTML5-->
+    <meta name="author" content="Daniel Fernández Bernardino" />
+
+    <!--Definición de la ventana gráfica-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Práctica 3 - Ejercicio 1</title>
+    <link rel="stylesheet" type="text/css" href="Ejercicio7.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio7.js"></script>
+</head>
+
+<body>
+    <h1>Esto es un título de nivel 1</h1>
+
+    <h2>Esto es un título de nivel 2</h2>
+
+    <h3>Esto es un titulo de nivel 3</h3>
+
+    <p>El primer párrafo</p>
+
+    <p>El segundo párrafo</p>
+
+    <table>
+        <tr>
+            <th scope="col" id="periodo">Periodo</th>
+            <th scope="col" id="viernes">Viernes</th>
+            <th scope="col" id="sabado">Sábado</th>
+            <th scope="col" id="domingo">Domingo</th>
+        </tr>
+        <tr>
+            <th scope="row" id="mañana" headers="periodo">Mañana</th>
+            <td headers="mañana viernes">Soleado</td>
+            <td headers="mañana sabado">Lluvia</td>
+            <td headers="mañana domingo">Soleado</td>
+        </tr>
+        <tr>
+            <th scope="row" id="tarde" headers="periodo">Tarde</th>
+            <td headers="tarde viernes">Nublado</td>
+            <td headers="tarde sabado">Soleado</td>
+            <td headers="tarde domingo">Lluvia</td>
+        </tr>
+        <tr>
+            <th scope="row" id="noche" headers="periodo">Noche</th>
+            <td headers="noche viernes">Nublado</td>
+            <td headers="noche sabado">Nublado</td>
+            <td headers="noche domingo">Nublado</td>
+        </tr>
+    </table>
+
+    <form>
+        <label for="texto">Nuevo título:</label>
+        <input id="texto" type="text" placeholder="Introduzca el titulo3" />
+        <input type="button" id="titulo3" value="Cambiar" />
+
+
+        <input type="button" value="Mostrar/ocultar párrafos" />
+        <input type="button" value="Mostrar/ocultar titulo1" />
+        <input type="button" value="Añadir párrafo" />
+
+        <input type="button" value="Eliminar últ. párrafo" />
+        
+
+
+    </form>
+</body>
+
+</html>
