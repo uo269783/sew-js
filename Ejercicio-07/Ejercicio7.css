@@ -22,6 +22,7 @@ h3 {
     font-size: 1.5em;
 }
 
+/* Especificidad 002 */
 table th {
     border-right: solid black 0.125em;
     border-bottom: solid black 0.125em;
@@ -29,18 +30,22 @@ table th {
     width: fit-content;
 }
 
+/* Especificidad 013 */
 table tr th:last-child {
     border-right: 0em;
 }
 
+/* Especificidad 013 */
 table tr:last-child th {
     border-bottom: 0em;
 }
 
+/* Especificidad 001 */
 table {
     border: solid black 0.25em;
 }
 
+/* Especificidad 001 */
 form {
     margin-top: 2%;
     display: grid;
