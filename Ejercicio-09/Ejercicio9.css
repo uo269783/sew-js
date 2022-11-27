@@ -1,0 +1,64 @@
+/* Daniel Fernández Bernardino*/
+
+/* Especificidad 001 */
+body {
+    background-color: beige;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Especificidad 001 */
+h1 {
+    font-size: 2.25em;
+}
+
+/* Especificidad 002 */
+table th {
+    border-right: solid black 0.125em;
+    border-bottom: solid black 0.125em;
+    border-collapse: separate;
+    width: fit-content;
+}
+
+/* Especificidad 013 */
+table tr th:last-child {
+    border-right: 0em;
+}
+
+/* Especificidad 013 */
+table tr:last-child th {
+    border-bottom: 0em;
+}
+
+/* Especificidad 001 */
+table {
+    border: solid black 0.25em;
+}
+
+/* Especificidad 001 */
+dt {
+    margin: 2% 10% 0%;
+    font-size: 1.75em;
+    font-weight: bold;
+    border-top: 0.0625em solid #000000;
+}
+
+/* Especificidad 011 */
+dt:first-child {
+    border-top: 0
+}
+
+/* Especificidad 001 */
+dd {
+    font-size: 1.25em;
+    margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+
+}
+
+/* Especificidad 001 */
+dl {
+    border: 0.125em solid #000000;
+    width: fit-content;
+}

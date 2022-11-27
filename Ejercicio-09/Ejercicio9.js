@@ -2,6 +2,7 @@ class Meteo {
     apikey = "45a626aeb1c76b9584561dc2a38649ce";
     enlace = "http://api.openweathermap.org/data/2.5/weather?q=";
     unidades = "&units=metric";
+    xml = "&mode=xml";
     idioma = "&lang=es";
     ciudades = ["Piedrasblancas", "La Braña", "Gijón", "Oviedo", "Laviana"];
     enlaceIcono = "https://openweathermap.org/img/w/";
@@ -20,9 +21,14 @@ class Meteo {
 
     };
 
-    cargarCiudad(ciudad, json) {
-        var info = "Tiempo: " + json.weather[0].description + ", temperatura: " + json.main.temp + "º, velocidad del viento: " + json.wind.speed + "m/s";
-        var icono = this.enlaceIcono + json.weather[0].icon + ".png";
+    cargarCiudad = function (ciudad, xml) {
+        var tiempo = $('weather', xml).attr('value');
+        var temp = $('temperature', xml).attr('value');
+        var viento = $('wind', xml);
+        var velViento = $('speed', viento).attr('value');
+
+        var info = "Tiempo: " + tiempo + ", temperatura: " + temp + "º, velocidad del viento: " + velViento + "m/s";
+        var icono = this.enlaceIcono + $('weather', xml).attr('icon') + ".png";
 
         info += " <img src=\"" + icono + "\" alt=\"Tiempo en " + ciudad + "\" /></a>";
 
@@ -30,11 +36,12 @@ class Meteo {
         $('dt:last-child').after("<dd>" + info + "</dd>");
     };
 
-    apiCall(ciudad) {
-        var url = this.enlace + ciudad + this.unidades + this.idioma + "&APPID=" + this.apikey;
+    apiCall = function (ciudad) {
+        var url = this.enlace + ciudad + this.xml + this.unidades + this.idioma + "&APPID=" + this.apikey;
         var meteo = this;
+
         $.ajax({
-            dataType: "json",
+            dataType: "xml",
             url: url,
             method: 'GET',
             success: function (data) {
@@ -44,7 +51,6 @@ class Meteo {
                 console.log("Algo ha ido mal");
             }
         });
-
     }
 
 }

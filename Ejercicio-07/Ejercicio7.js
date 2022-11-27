@@ -5,7 +5,7 @@ var nElementosTabla = 1;
 
 $('document').ready(function () {
     $('input[type=button]:nth-child(3)').click(function () {
-        var texto = $('#texto').val();
+        var texto = $('input[type=text]').val();
         console.log(texto)
         $('h3').text(texto);
     });
