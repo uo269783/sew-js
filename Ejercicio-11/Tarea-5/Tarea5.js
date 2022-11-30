@@ -9,6 +9,7 @@ class MapaDinamico {
 
     initMap() {
         var mapa = new google.maps.Map(document.getElementsByTagName("main")[0], { zoom: 10, center: this.centro });
+
         var context = this;
         var infoWindow = new google.maps.InfoWindow;
         if (navigator.geolocation) {

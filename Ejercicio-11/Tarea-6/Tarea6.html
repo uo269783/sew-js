@@ -20,13 +20,22 @@
 </head>
 
 <body>
-    <h1>Geolocalización</h1>
-    <p>En este documento se verá un mapa dinámico de Google Maps con centro en la posición del usuario. <input
-            type="button" value="Dibujar posición" /></p>
+    <header>
+        <h1>Cálculo de distancias</h1>
+        <p>En este documento se obtendrá la distancia entre la posición del usuario si activa la geolocalización y la
+            ciudad buscada. En caso de que la geolocalización no esté activada se tomará como punto de partida
+            Piedrasblancas.</p>
+    </header>
+
+    <form>
+        <p><label for="destino">Destino:</label></p>
+        <input type="text" id="destino" placeholder="Destino" />
+        <input type="button" value="Obtener disctancia" />
+    </form>
     <main></main>
     <script src="Tarea6.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&callback=mapaDinamico.initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&callback=distancia.initMap"></script>
 
 
 

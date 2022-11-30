@@ -25,6 +25,10 @@ class Geolocalizacion {
             case err.UNKNOWN_ERROR:
                 this.error = "Error desconocido.";
                 break;
+            default:
+                this.error = "Error desconocido.";
+                break;
+
         }
     }
 
