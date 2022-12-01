@@ -1,0 +1,31 @@
+/* Daniel Fernández Bernardino*/
+
+/* Especificidad 001 */
+body {
+    background-color: beige;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Especificidad 001 */
+h1 {
+    font-size: 2.25em;
+}
+
+/* Especificidad 001 */
+header p {
+    font-size: 1.5em;
+}
+
+section:first-child p {
+    font-size: 0.75em;
+}
+
+section:last-child p {
+    font-size: 1.25em;
+    border-collapse: collapse;
+}
+
+section:last-child h2 {
+    border-top: .0625em solid black;
+}
