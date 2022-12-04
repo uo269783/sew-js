@@ -1,0 +1,317 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -6.004,
+                    43.560
+                ]
+            },
+            "properties": {
+                "name": "San Adriano"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.991,
+                    43.546
+                ]
+            },
+            "properties": {
+                "name": "La Braña"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.975,
+                    43.559
+                ]
+            },
+            "properties": {
+                "name": "Piedrasblancas"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.960,
+                    43.572
+                ]
+            },
+            "properties": {
+                "name": "Salinas"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.782,
+                    43.370
+                ]
+            },
+            "properties": {
+                "name": "Limanes"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.668,
+                    43.531
+                ]
+            },
+            "properties": {
+                "name": "Gijón"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.850,
+                    43.359
+                ]
+            },
+            "properties": {
+                "name": "Oviedo"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.568,
+                    43.213
+                ]
+            },
+            "properties": {
+                "name": "Laviana"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.975,
+                    43.559
+                ]
+            },
+            "properties": {
+                "name": "Piedrasblancas"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.975,
+                    43.559
+                ]
+            },
+            "properties": {
+                "name": "Piedrasblancas"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.936,
+                    43.551
+                ]
+            },
+            "properties": {
+                "name": "Avilés"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.975,
+                    43.559
+                ]
+            },
+            "properties": {
+                "name": "Piedrasblancas"
+            }
+        }
+    ]
+}
