@@ -5,25 +5,38 @@ class Lector {
 
     escribirTexto(reader) {
         //$('section:first').text(reader.result);
+
+        $('section:first').text("");
+        $('section:first').append("<h2>Contenido</h2>");
+
         var parrafos = reader.result.split("\n");
-        $('section:last').text("");
-        $('section:last').append("<h2>Contenido</h2>");
         for (var p in parrafos)
             if (parrafos[p].trim() != "")
                 $('section:first').append("<p>" + parrafos[p] + "</p>");
+
     }
+
+    escribirCodigo(reader) {
+        $('section:first').text("");
+        $('section:first').append("<h2>Contenido</h2>");
+
+        $('section:first').append("<pre>" + reader.result + "</pre>");
+    }
+
 
     leerArchivo(files) {
         var archivo = files[0];
         var reader = new FileReader();
         var context = this;
-        reader.onload = function () { context.escribirTexto(this) };
 
-        console.log(archivo.type);
         switch (archivo.type) {
             case "text/plain":
+                reader.onload = function () { context.escribirTexto(this) };
+                reader.readAsText(archivo);
+                break;
             case "text/xml":
-            case "text/json":
+            case "application/json":
+                reader.onload = function () { context.escribirCodigo(this) };
                 reader.readAsText(archivo);
                 break;
         }

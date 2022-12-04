@@ -17,8 +17,6 @@ class Meteo {
         for (var c in this.ciudades) {
             this.apiCall(this.ciudades[c]);
         }
-
-
     };
 
     cargarCiudad = function (ciudad, xml) {
