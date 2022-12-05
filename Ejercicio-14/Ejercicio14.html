@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+
+    <!--Metadatos de los documentos HTML5-->
+    <meta name="author" content="Daniel Fernández Bernardino" />
+
+    <!--Definición de la ventana gráfica-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Práctica 3 - Ejercicio 14</title>
+    <link rel="stylesheet" type="text/css" href="Ejercicio14.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Ejercicio14.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Ejercicio 14</h1>
+        <p>En este documento se hará uso de las APIs File, Canvas, y Fullscreen de HTML5. Se permitirá cargar un archivo con texto, el cual será convertido a código y ejecutado. En caso de tratarse de instrucciones de Canvas, se dibujará en el mismo.
+        </p>
+    </header>
+
+    <input type="file" onchange="lector.leerFichero(this.files)" />
+    <!-- <input type="button" onclick="func()" value="Func" /> -->
+    <main><canvas onchange="lector.fullScreen()"></canvas></main>
+</body>
+
+</html>

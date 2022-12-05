@@ -1,0 +1,8 @@
+var canvas = document.getElementsByTagName('canvas')[0].getContext('2d');
+canvas.fillStyle = "rgba(0, 255, 255, 0.5)";
+canvas.beginPath();
+canvas.moveTo(225, 25);
+canvas.lineTo(305, 25);
+canvas.lineTo(225, 105);
+canvas.closePath();
+canvas.fill();
