@@ -8,10 +8,12 @@ class Geolocalizacion {
     getPosicion(val) {
         this.longitud = val.coords.longitude;
         this.latitud = val.coords.latitude;
+        this.precision = val.coords.accuracy;
     }
 
     escribirDatos() {
-        $('p:last-child').after("<p>Longitud: " + this.longitud + ", latitud: " + this.latitud + "</p>");
+        //tan solo se muestran estos tres valores ya que el resto daban un valor de undefined.
+        $('p:last-child').after("<p>Longitud: " + this.longitud + ", latitud: " + this.latitud + ", precisión de localización: " + this.precision + "</p>");
     }
 
     botones() {
