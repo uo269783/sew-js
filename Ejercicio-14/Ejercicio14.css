@@ -30,3 +30,8 @@ main section {
 input {
     margin: 2%;
 }
+
+h2 {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+}

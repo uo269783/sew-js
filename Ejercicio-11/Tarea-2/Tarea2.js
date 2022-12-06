@@ -8,6 +8,7 @@ class Geolocalizacion {
     getPosicion(val) {
         this.longitud = val.coords.longitude;
         this.latitud = val.coords.latitude;
+        this.precision = val.coords.accuracy;
         this.error = "";
     }
 
@@ -37,7 +38,7 @@ class Geolocalizacion {
         if (this.error != "")
             texto = "<p>Se ha producido un error: " + this.error + "</p>";
         else
-            texto = "<p>Longitud: " + this.longitud + ", latitud: " + this.latitud + "</p>";
+            texto = "<p>Longitud: " + this.longitud + ", latitud: " + this.latitud + ", precisión de localización: " + this.precision + "</p>";
         $('p:last-child').after(texto);
     }
 
