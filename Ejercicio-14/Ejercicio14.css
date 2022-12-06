@@ -11,3 +11,28 @@ body {
 h1 {
     font-size: 2.25em;
 }
+
+/* Especificidad 001 */
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: fit-content;
+}
+
+/* Especificidad 002 */
+main section {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: fit-content;
+}
+
+/* Especificidad 001 */
+canvas {
+    width: 37.5em;
+    height: 37.5em;
+}
+
+/* Especificidad 001 */
+input {
+    margin: 2%;
+}

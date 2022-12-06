@@ -13,8 +13,8 @@ class Lector {
             reader.onload = function () { context.parseFichero(this); }
             reader.readAsText(archivo);
         }
-        else if (archivo.type == "image/png" || archivo.type == "image.jpeg")
-            reader.onload = function () { context.parseImagen(this); }
+        else if (archivo.type == "image/png" || archivo.type == "image/jpeg")
+            this.parseImagen(archivo);
 
     }
 
@@ -31,12 +31,29 @@ class Lector {
 
     }
 
+    parseImagen(archivo) {
+        var canvas = document.getElementsByTagName("canvas")[0].getContext('2d');
+        var img = new Image();
+        img.src = archivo.name;
+        img.onload = function () {
+            canvas.drawImage(img, 0, 0);
+        }
+        canvas.drawImage(img, 100, 100);
+    }
+
     fullScreen() {
-        var canvas = document.getElementsByTagName("canvas");
-        console.log("llega");
+        var canvas = document.getElementsByTagName("canvas")[0];
+
         if (canvas.requestFullscreen) {
             canvas.requestFullscreen();
         }
+    }
+
+    vaciarCanvas() {
+        var canvas = document.getElementsByTagName("canvas")[0];
+        var context = canvas.getContext('2d');
+        console.log("llega");
+        context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
 }

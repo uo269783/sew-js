@@ -12,6 +12,7 @@ h1 {
     font-size: 2.25em;
 }
 
+/* Especificidad 002 */
 header p {
     font-size: 1.25em;
 }
@@ -32,6 +33,7 @@ form p {
     margin-bottom: 0%;
 }
 
+/* Especificidad 001 */
 input {
     font-size: 1em;
 }

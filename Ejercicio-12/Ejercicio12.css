@@ -17,15 +17,18 @@ header p {
     font-size: 1.5em;
 }
 
+/* Especificidad 012 */
 section:first-child p {
     font-size: 0.75em;
 }
 
+/* Especificidad 012 */
 section:last-child p {
     font-size: 1.25em;
     border-collapse: collapse;
 }
 
+/* Especificidad 012 */
 section:last-child h2 {
     border-top: .0625em solid black;
 }

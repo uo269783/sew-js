@@ -1,3 +1,4 @@
+se
 <!DOCTYPE HTML>
 
 <html lang="es">
@@ -22,13 +23,23 @@
 <body>
     <header>
         <h1>Ejercicio 14</h1>
-        <p>En este documento se hará uso de las APIs File, Canvas, y Fullscreen de HTML5. Se permitirá cargar un archivo con texto, el cual será convertido a código y ejecutado. En caso de tratarse de instrucciones de Canvas, se dibujará en el mismo.
+        <p>En este documento se hará uso de las APIs File, Canvas, y Fullscreen de HTML5. Se permitirá cargar un archivo
+            con texto, el cual será convertido a código y ejecutado. En caso de tratarse de instrucciones de Canvas, se
+            dibujará en el mismo.
         </p>
     </header>
 
-    <input type="file" onchange="lector.leerFichero(this.files)" />
-    <!-- <input type="button" onclick="func()" value="Func" /> -->
-    <main><canvas onchange="lector.fullScreen()"></canvas></main>
+    <section>
+        <input type="file" onchange="lector.leerFichero(this.files)" />
+        <input type="button" onclick="lector.fullScreen()" value="Canvas a pantalla completa" />
+        <input type="button" onclick="lector.vaciarCanvas()" value="Vaciar canvas." />
+    </section>
+    <main>
+        <section>
+            <h2>Canvas:</h2>
+            <canvas></canvas>
+        </section>
+    </main>
 </body>
 
 </html>
