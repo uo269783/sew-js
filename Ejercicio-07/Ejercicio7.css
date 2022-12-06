@@ -54,3 +54,8 @@ form {
     column-gap: 2%;
     width: fit-content;
 }
+
+/* Especificidad 001 */
+input {
+    margin: 2%;
+}
