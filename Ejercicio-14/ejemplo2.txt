@@ -1,0 +1,4 @@
+var valor1 = 15;
+var valor2 = 17;
+var operacion = valor1+' + '+valor2;
+$('main').append('<p>'+operacion+' = '+eval(operacion));
