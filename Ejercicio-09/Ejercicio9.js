@@ -1,6 +1,6 @@
 class Meteo {
     apikey = "45a626aeb1c76b9584561dc2a38649ce";
-    enlace = "http://api.openweathermap.org/data/2.5/weather?q=";
+    enlace = "https://api.openweathermap.org/data/2.5/weather?q=";
     unidades = "&units=metric";
     xml = "&mode=xml";
     idioma = "&lang=es";
