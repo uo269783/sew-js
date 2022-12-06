@@ -1,1 +1,1 @@
-$('main').append('<p>Hola buenas tardes</p>'); $('p:last').append('<p>Bien loco</p>');
+$('main').append('<p>Hola mundo</p>'); $('p:last').append('<p>Ejemplo1</p>');

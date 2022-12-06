@@ -35,10 +35,11 @@ class Lector {
         var canvas = document.getElementsByTagName("canvas")[0].getContext('2d');
         var img = new Image();
         img.src = archivo.name;
+
         img.onload = function () {
-            canvas.drawImage(img, 0, 0);
+            console.log(img.width, img.height)
+            canvas.drawImage(img, 0, 0, img.width, img.height);
         }
-        canvas.drawImage(img, 100, 100);
     }
 
     fullScreen() {
@@ -52,7 +53,7 @@ class Lector {
     vaciarCanvas() {
         var canvas = document.getElementsByTagName("canvas")[0];
         var context = canvas.getContext('2d');
-        console.log("llega");
+
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
