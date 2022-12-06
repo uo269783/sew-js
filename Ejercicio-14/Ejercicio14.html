@@ -32,7 +32,10 @@
 
     <section>
         <h2>Opciones</h2>
-        <input type="file" onchange="lector.leerFichero(this.files)" />
+        <p>
+            <label for="archivo">Suba un archivo (txt, jpeg, png)</label>
+            <input id="archivo" type="file" onchange="lector.leerFichero(this.files)" />
+        </p>
         <input type="button" onclick="lector.fullScreen()" value="Canvas a pantalla completa" />
         <input type="button" onclick="lector.vaciarCanvas()" value="Vaciar canvas." />
     </section>

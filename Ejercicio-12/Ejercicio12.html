@@ -25,7 +25,8 @@
         <p>En este documento se verá el funcionamiento de la API File.</p>
     </header>
 
-    <input type="file" onchange="lector.leerArchivo(this.files)" />
+    <label for="archivo">Suba un archivo (.txt, .json, .xml)</label>
+    <input id="archivo" type="file" onchange="lector.leerArchivo(this.files)" />
     <section>
         <h2>Contenido</h2>
     </section>

@@ -26,7 +26,8 @@
 
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&callback=mapa.initMap"></script>
-    <input type="file" onchange="mapa.leerArchivo(this.files)" />
+    <label for="archivo">Suba un archivo geoJSON</label>
+    <input id="archivo" type="file" onchange="mapa.leerArchivo(this.files)" />
 
     <main></main>
 </body>
